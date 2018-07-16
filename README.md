@@ -47,3 +47,9 @@ class UUIDUser(AbstractUser):
         verbose_name = 'usuário'
         verbose_name_plural = 'usuários'
 ```
+
+Você pode ver no arquivo settings.py a definição da classe UUIDUser como classe de usuário padrão.
+
+```python
+AUTH_USER_MODEL = 'core.UUIDUser'
+```
