@@ -20,9 +20,12 @@ urlpatterns = [
     # https://docs.djangoproject.com/en/2.0/topics/auth/default/#django.contrib.auth.views.LogoutView
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
+    # Users
+    path('usuarios/', core.UsersView.as_view(), name='users-list'),
+    path('usuarios/novo/', core.UserCreateView.as_view(), name='user-create'),
+    path('usuarios/<uuid:pk>/editar/', core.UserEditView.as_view(), name='user-edit'),
+    
     # Dashboard
     path('dashboard/', core.DashboardView.as_view(), name='dashboard'),
 
-    # Users
-    path('usuarios/', core.UsersView.as_view(), name='users'),
 ]

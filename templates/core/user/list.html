@@ -8,9 +8,7 @@
       <small>it all starts here</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="#">Examples</a></li>
-      <li class="active">Blank page</li>
+      <a href="{% url 'core:user-create' %}" class="btn btn-sm btn-danger pull-right">Novo usuário</a>
     </ol>
   </section>
 
@@ -29,16 +27,16 @@
               <th style="width: 5%">#</th>
               <th>Nome</th>
               <th>Email</th>
-              <th>Matrícula</th>
+              <th>CPF</th>
               <th style="width: 5%">Status</th>
             </tr>
-            {% for user in object_list %}
+            {% for obj in object_list %}
             <tr>
               <td>{{ forloop.counter }}</td>
-              <td>{{ user.first_name }} {{ user.last_name }}</td>
-              <td>{{ user.email }}</td>
-              <td>{{ user.registration }}</td>
-              <td>{% if user.is_active %}<span class="label label-success">Ativo</span>{% else %}<span class="label label-danger">Inativo</span>{% endif %}</td>
+              <td><a href="{% url 'core:user-edit' obj.id %}">{{ obj.first_name }} {{ obj.last_name }}</a></td>
+              <td>{{ obj.email }}</td>
+              <td>{{ obj.cpf }}</td>
+              <td>{% if obj.is_active %}<span class="label label-success">Ativo</span>{% else %}<span class="label label-danger">Inativo</span>{% endif %}</td>
             </tr>
             {% endfor %}
           </tbody>

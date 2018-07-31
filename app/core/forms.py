@@ -9,8 +9,6 @@ from .models import UUIDUser
 # User: create
 class UUIDUserForm(forms.ModelForm):
 
-    is_company = forms.BooleanField(widget=forms.HiddenInput(), initial=True)
-
     def save(self, commit=True):
         user = super(UUIDUserForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password"])
@@ -20,12 +18,12 @@ class UUIDUserForm(forms.ModelForm):
 
     class Meta:
         model = UUIDUser
-        fields = ('username', 'first_name', 'email','password', 'is_company')
+        fields = ('username', 'first_name', 'email', 'password')
         labels = {
             'username': 'Login',
             'first_name': 'Nome completo',
             'email': 'Email',
         }
         widgets={
-            'password':forms.PasswordInput()
+            'password': forms.PasswordInput()
         }
