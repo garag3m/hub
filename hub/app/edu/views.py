@@ -21,5 +21,5 @@ class StudentViewSet(viewsets.ModelViewSet):
         if status:
             queryset = queryset.filter(status__icontains=status)
         if registration:
-            queryset = queryset.filter(registration__icontains=registration)
+            queryset = queryset.filter(registration=registration)
         return queryset

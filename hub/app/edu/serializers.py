@@ -7,9 +7,9 @@ from . import models
 # - - - - - - - - - - - - - - - - - - -
 class StudentSerializer(serializers.ModelSerializer):
 
-    course = serializers.CharField(write_only=True)
-    status = serializers.CharField(write_only=True)
-    registration = serializers.CharField(write_only=True)
+    course = serializers.CharField()
+    status = serializers.CharField()
+    registration = serializers.CharField()
 
     class Meta:
         model = models.Student

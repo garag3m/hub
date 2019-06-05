@@ -21,7 +21,8 @@ class Request(core.CreateUpdateModel):
     justification_teacher = models.TextField(verbose_name='Justificativa do professor')
     justification_CAEST = models.TextField(verbose_name='Justificativa da CAEST', blank=True, null=True)
     teacher = models.ForeignKey(core.UUIDUser, on_delete=models.CASCADE, verbose_name='Professor', related_name='request_teacher')
-    evaluator = models.ForeignKey(core.UUIDUser, on_delete=models.CASCADE, verbose_name='Avaliador', related_name='request_evaluator', blank=True, null=True)
+    evaluator = models.ForeignKey(core.UUIDUser, on_delete=models.CASCADE, verbose_name='Avaliador',
+                                    related_name='request_evaluator', blank=True, null=True)
 
     def __str__(self):
         return f'{self.justification_teacher} {self.status}'
