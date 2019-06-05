@@ -15,12 +15,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+from django.conf.urls.static import static
+from django.conf import settings
+from app.core.views import UUIDUserViewSet
+from app.edu.views import StudentViewSet
+from app.ifood.views import RequestViewSet
+from app.ifood.views import StudentMealViewSet
+
+router = routers.DefaultRouter()
+
+router.register(r'student', StudentViewSet, base_name='api-student')
+router.register(r'request', RequestViewSet, base_name='api-request')
+router.register(r'meal', StudentMealViewSet, base_name='api-meal')
+router.register(r'user', UUIDUserViewSet, base_name='api-core')
+
+
 
 urlpatterns = [
-    # Admin
     path('admin/', admin.site.urls),
-
-    # Api
-    # path('api/', include('app.core.urls'), name='api-core'),
-    path('api/', include('app.edu.urls'), name='api-edu'),
+    path('api/', include(router.urls)),
 ]
+
+if settings.DEBUG:
+  urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

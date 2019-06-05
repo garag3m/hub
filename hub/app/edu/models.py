@@ -10,7 +10,7 @@ class Student(core.CreateUpdateModel):
     name = models.CharField(max_length=100, verbose_name='Nome')
     course = models.CharField(max_length=100, verbose_name='Curso')
     status = models.CharField(max_length=100, verbose_name='Situação')
-    registration = models.CharField(max_length=100, verbose_name='Matrícula')
+    registration = models.CharField(max_length=100, verbose_name='Matrícula', unique=True)
 
     def __str__(self):
         return f'{self.name} ({self.registration})'

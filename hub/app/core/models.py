@@ -33,7 +33,7 @@ class UUIDUser(AbstractUser):
     picture_thumb = ImageSpecField(source='picture', processors=[ResizeToFill(200, 200)], format='JPEG', options={'quality': 60})
 
     def __str__(self):
-        return self.first_name
+        return self.username
 
     class Meta:
         verbose_name = 'usuário'
