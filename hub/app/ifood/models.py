@@ -23,7 +23,7 @@ class Request(core.CreateUpdateModel):
     teacher = models.ForeignKey(core.UUIDUser, on_delete=models.CASCADE, verbose_name='Professor', related_name='request_teacher')
     evaluator = models.ForeignKey(core.UUIDUser, on_delete=models.CASCADE, verbose_name='Avaliador',
                                     related_name='request_evaluator', blank=True, null=True)
-
+    
     def __str__(self):
         return f'{self.justification_teacher} {self.status}'
 

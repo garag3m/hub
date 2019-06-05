@@ -8,6 +8,7 @@ class RequestViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.RequestSerializer
 
     def get_queryset(self):
+        search = self.request.query_params.get('search', None)
         students = self.request.query_params.get('students', None)
         date = self.request.query_params.get('date', None)
         type = self.request.query_params.get('type', None)
@@ -15,16 +16,19 @@ class RequestViewSet(viewsets.ModelViewSet):
         teacher = self.request.query_params.get('teacher', None)
         queryset = models.Request.objects.all()
 
-        if students:
-            queryset = queryset.filter(students=students)
-        if date:
-            queryset = queryset.filter(date__icontains=date)
-        if type:
-            queryset = queryset.filter(type__icontains=type)
-        if status:
-            queryset = queryset.filter(status__icontains=status)
-        if teacher:
-            queryset = queryset.filter(teacher=teacher)
+        if search:
+            queryset = queryset.filter(Q(name__icontains=search) | Q(course__icontains=search) | Q(status__icontains=search) | Q(registration__icontains=search))
+        else:                                                                                                                                                                        
+            if students:
+                queryset = queryset.filter(students=students)
+            if date:
+                queryset = queryset.filter(date__icontains=date)
+            if type:
+                queryset = queryset.filter(type__icontains=type)
+            if status:
+                queryset = queryset.filter(status__icontains=status)
+            if teacher:
+                queryset = queryset.filter(teacher=teacher)
         return queryset
 
 # StudentMeal viewset
