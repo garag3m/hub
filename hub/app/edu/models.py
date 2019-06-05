@@ -12,6 +12,13 @@ class Student(core.CreateUpdateModel):
     status = models.CharField(max_length=100, verbose_name='Situação')
     registration = models.CharField(max_length=100, verbose_name='Matrícula', unique=True)
 
+    @property
+    def is_valid(self):
+        if self.status == 'Matriculado':
+            return True
+        else:
+            return False
+
     def __str__(self):
         return f'{self.name} ({self.registration})'
 
