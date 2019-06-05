@@ -12,7 +12,7 @@ class Contador(object):
                 return ("%.2f" % left)
 
 #Simple request on suap's API.
-api_request = requests.get('https://suap.ifpb.edu.br/api/ensino/alunos/v1/', auth=HTTPBasicAuth('20161230008', 'Adr15025') )
+api_request = requests.get('https://suap.ifpb.edu.br/api/ensino/alunos/v1/', auth=HTTPBasicAuth('user', 'password') )
 
 #Getting response from 'api_request' as a json file.
 response_init = api_request.json()
