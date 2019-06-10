@@ -1,10 +1,11 @@
 from rest_framework import viewsets, permissions
 from . import models, serializers
+from .tasks import request_timeout,vai_acabar
+
 
 # Request viewset
 # - - - - - - - - - - - - - - - - - - -
 class RequestViewSet(viewsets.ModelViewSet):
-
     serializer_class = serializers.RequestSerializer
 
     def get_queryset(self):
@@ -15,6 +16,7 @@ class RequestViewSet(viewsets.ModelViewSet):
         status = self.request.query_params.get('status', None)
         teacher = self.request.query_params.get('teacher', None)
         queryset = models.Request.objects.all()
+        
 
         if search:
             queryset = queryset.filter(Q(name__icontains=search) | Q(course__icontains=search) | Q(status__icontains=search) | Q(registration__icontains=search))
@@ -30,6 +32,8 @@ class RequestViewSet(viewsets.ModelViewSet):
             if teacher:
                 queryset = queryset.filter(teacher=teacher)
         return queryset
+    
+    
 
 # StudentMeal viewset
 # - - - - - - - - - - - - - - - - - - -

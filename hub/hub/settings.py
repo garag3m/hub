@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
+    'huey.contrib.djhuey',
 
     # Hub
     'app.ifood',
@@ -126,6 +127,16 @@ REST_FRAMEWORK = {
     )
 }
 
+# Huey
+# - - - - - - - - - - - - - - - - - - -
+HUEY = {
+    'huey_class': 'huey.SqliteHuey',  # Huey implementation to use.
+    'name': DATABASES['default']['NAME'],  # Use db name for huey.
+    'results': True,  # Store return values of tasks.
+    'store_none': False,  # If a task returns None, do not save to results.
+    'immediate': False,  # If DEBUG=True, run synchronously.
+    'utc': True,  # Use UTC for all times internally.
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
