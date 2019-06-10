@@ -14,6 +14,7 @@ class StudentViewSet(viewsets.ModelViewSet):
         course = self.request.query_params.get('course', None)
         status = self.request.query_params.get('status', None)
         registration = self.request.query_params.get('registration', None)
+        valid = self.request.query_params.get('valid', None)
         queryset = models.Student.objects.all()
         
         if search:
@@ -27,4 +28,6 @@ class StudentViewSet(viewsets.ModelViewSet):
                 queryset = queryset.filter(status__icontains=status)
             if registration:
                 queryset = queryset.filter(registration=registration)
+            if valid:
+                queryset = queryset.filter(is_valid=valid)
         return queryset

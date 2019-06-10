@@ -13,7 +13,7 @@ class Student(core.CreateUpdateModel):
     registration = models.CharField(max_length=100, verbose_name='Matrícula', unique=True)
 
     @property
-    def is_valid(self):
+    def valid(self):
         if self.status == 'Matriculado':
             return True
         else:
