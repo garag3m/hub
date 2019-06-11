@@ -1,6 +1,5 @@
 from rest_framework import viewsets, permissions
 from . import models, serializers
-from .tasks import request_timeout,vai_acabar
 
 
 # Request viewset

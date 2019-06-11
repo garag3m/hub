@@ -1,7 +1,6 @@
 from rest_framework import viewsets, permissions
 from django.db.models import Q
 from . import models, serializers
-from app.ifood.tasks import request_timeout
 
 # Student viewset
 # - - - - - - - - - - - - - - - - - - -
@@ -17,7 +16,6 @@ class StudentViewSet(viewsets.ModelViewSet):
         registration = self.request.query_params.get('registration', None)
         valid = self.request.query_params.get('valid', None)
         queryset = models.Student.objects.all()
-        request_timeout()
         
         if search:
             queryset = queryset.filter(Q(name__icontains=search) | Q(course__icontains=search) | Q(status__icontains=search) | Q(registration__icontains=search))
