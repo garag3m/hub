@@ -1,5 +1,10 @@
 from rest_framework import viewsets, permissions
+
 from . import models, serializers
+<<<<<<< HEAD
+=======
+from .tasks import request_timeout, vai_acabar
+>>>>>>> 1048e61a8adc48e6c03333e7644b269b6175695b
 
 
 # Request viewset
@@ -32,6 +37,12 @@ class RequestViewSet(viewsets.ModelViewSet):
                 queryset = queryset.filter(teacher=teacher)
         return queryset
     
+    def get_serializer_class(self):
+        if self.request.method.lower() == 'get':
+            if self.request.user.is_superuser:
+                return serializers.RequestSerializer
+            return serializers.RequestSerializer
+        return serializers.CreateRequestSerializer
     
 
 # StudentMeal viewset

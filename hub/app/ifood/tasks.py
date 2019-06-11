@@ -3,10 +3,11 @@ from huey.contrib.djhuey import periodic_task, task
 from app.ifood import models
 from datetime import *
 
-# @task()
-# def request_timeout():
-#     print('Hello World!')
+@task()
+def request_timeout():
+    print('Hello World!')
 
+<<<<<<< HEAD
 
 @periodic_task(crontab(minute='*/1'))
 def timeout_task():
@@ -48,3 +49,8 @@ def timeout_task():
     # print(requested_at)
     # print(now)
     # print(queryset['status'])
+=======
+@periodic_task(crontab(minute='*/1'))
+def vai_acabar():
+    print('Every one minute this will be printed by the consumer')
+>>>>>>> 1048e61a8adc48e6c03333e7644b269b6175695b

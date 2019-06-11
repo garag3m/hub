@@ -1,50 +1,42 @@
 from rest_framework import serializers
-from app.edu.serializers import StudentSerializer
-from app.core.serializers import UUIDUserSerializer
-from app.edu.models import Student
-from app.core.models import UUIDUser
+
 from . import models
 
+from app.core.models import UUIDUser
+from app.core.serializers import UUIDUserSerializer
+
+from app.edu.models import Student
+from app.edu.serializers import StudentSerializer
 
 
 # Request serializer
 # - - - - - - - - - - - - - - - - - - -
 class RequestSerializer(serializers.ModelSerializer):
+    
     students = StudentSerializer(many=True)
-    teacher = UUIDUserSerializer()
-    evaluator = UUIDUserSerializer()
 
     class Meta:
         model = models.Request
-        fields = ('id', 'students', 'date', 'type', 'status', 'justification_teacher', 'justification_CAEST', 'teacher', 'evaluator')
+        fields = ('pk', 'students', 'date', 'type', 'status', 'justification_teacher', 'justification_CAEST')
 
-    def students_builder(self, students, request):
-        for student in students:
-            st = Student.objects.create(**student)
-            request.students.add(st)
+
+class CreateRequestSerializer(serializers.ModelSerializer):
+
+    pk = serializers.UUIDField(read_only=True)
+    students = StudentSerializer(many=True, read_only=True)
+    student_list = serializers.CharField(write_only=True)
+    type = serializers.ChoiceField(choices=models.Request.STATUS)
 
     def create(self, validated_data):
-        students = validated_data['students']
-        del validated_data['students']
+        students = validated_data.pop('student_list').split(',')
+        request = models.Request.objects.create(**validated_data, teacher=self.context['request'].user)
+        request.students.set(students)
+        return RequestSerializer(request).data
+    
+    class Meta:
+        model = models.Request
+        fields = ('pk', 'students', 'student_list', 'date', 'type', 'justification_teacher')
 
-        teacher = validated_data['teacher']
-        del validated_data['teacher']
-
-        evaluator = validated_data['evaluator']
-        del validated_data['evaluator']
-
-        req = models.Request.objects.create(**validated_data)
-        self.students_builder(students, req)
-
-        tch = UUIDUser.objects.create(**teacher)
-        req.teacher = tch
-
-        evl = UUIDUser.objects.create(**evaluator)
-        req.evaluator = evl
-
-        req.save()
-
-        return req
 
 class StudentMealSerializer(serializers.ModelSerializer):
     student = StudentSerializer()
