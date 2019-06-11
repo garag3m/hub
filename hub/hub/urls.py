@@ -18,23 +18,24 @@ from django.urls import path, include
 from rest_framework import routers
 from django.conf.urls.static import static
 from django.conf import settings
-from app.core.views import UUIDUserViewSet
-from app.edu.views import StudentViewSet
-from app.ifood.views import RequestViewSet
-from app.ifood.views import StudentMealViewSet
+
+from app.core import views as core
+from app.edu import views as edu
+from app.ifood import views as ifood
 
 router = routers.DefaultRouter()
 
-router.register(r'student', StudentViewSet, base_name='api-student')
-router.register(r'request', RequestViewSet, base_name='api-request')
-router.register(r'meal', StudentMealViewSet, base_name='api-meal')
-router.register(r'user', UUIDUserViewSet, base_name='api-core')
+router.register(r'user', core.UUIDUserViewSet, base_name='api-core')
+router.register(r'student', edu.StudentViewSet, base_name='api-student')
+router.register(r'meal', ifood.StudentMealViewSet, base_name='api-meal')
+router.register(r'request', ifood.RequestViewSet, base_name='api-request')
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/auth/', core.AuthToken.as_view()),
 ]
 
 if settings.DEBUG:
