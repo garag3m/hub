@@ -23,19 +23,19 @@ class RequestSerializer(serializers.ModelSerializer):
 class CreateRequestSerializer(serializers.ModelSerializer):
 
     pk = serializers.UUIDField(read_only=True)
-    # students = StudentSerializer(many=True, read_only=True)
-    students = serializers.CharField()
+    students = StudentSerializer(many=True, read_only=True)
+    student_list = serializers.CharField(write_only=True)
     type = serializers.ChoiceField(choices=models.Request.STATUS)
 
     def create(self, validated_data):
-        students = validated_data.pop('students').split(',')
+        students = validated_data.pop('student_list').split(',')
         request = models.Request.objects.create(**validated_data, teacher=self.context['request'].user)
         request.students.set(students)
         return RequestSerializer(request).data
     
     class Meta:
         model = models.Request
-        fields = ('pk', 'students', 'date', 'type', 'justification_teacher')
+        fields = ('pk', 'students', 'student_list', 'date', 'type', 'justification_teacher')
 
 
 class StudentMealSerializer(serializers.ModelSerializer):
