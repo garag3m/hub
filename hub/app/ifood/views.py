@@ -1,10 +1,6 @@
 from rest_framework import viewsets, permissions
 
 from . import models, serializers
-<<<<<<< HEAD
-=======
-from .tasks import request_timeout, vai_acabar
->>>>>>> 1048e61a8adc48e6c03333e7644b269b6175695b
 
 
 # Request viewset
