@@ -2,11 +2,13 @@ from huey import crontab
 from huey.contrib.djhuey import periodic_task, task
 from app.ifood import models
 from datetime import *
+from django.core.mail import EmailMessage
+from django.http import HttpResponse
 
-# @task()
-# def request_timeout():
-#     print('Hello World!')
-
+@task()
+def send_simple_email():
+    email = EmailMessage("Hub", "TESTE HUB INTELIGÊNCIA ARTIFICIAL <-autoindexError-> ##404 - 403 IFPB.edu.br {}".format(index), to=['nicolasnekar@gmail.com'])
+    email.send()
 
 @periodic_task(crontab(minute='*/1'))
 def timeout_task():
