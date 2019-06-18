@@ -7,7 +7,7 @@ from django.http import HttpResponse
 
 @task()
 def send_simple_email():
-    email = EmailMessage("Hub", "TESTE HUB INTELIGÊNCIA ARTIFICIAL <-autoindexError-> ##404 - 403 IFPB.edu.br {}".format(index), to=['nicolasnekar@gmail.com'])
+    email = EmailMessage("Hub", "TESTE HUB INTELIGÊNCIA ARTIFICIAL <-autoindexError-> ##404 - 403 IFPB.edu.br", to=['nicolasnekar@gmail.com'])
     email.send()
 
 @periodic_task(crontab(minute='*/1'))
@@ -36,7 +36,7 @@ def timeout_task():
                     if ((now_year - requested_year) == 0):
                         if((now_hour - requested_hour) >= 0):
                             if((now_minute - requested_minute) >= 0):
-                                    models.Request.objects.filter(id=request['id']).update(status=2)
+                                models.Request.objects.filter(id=request['id']).update(status=2)
 
                                 
 

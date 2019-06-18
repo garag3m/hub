@@ -17,7 +17,6 @@ class RequestViewSet(viewsets.ModelViewSet):
         teacher = self.request.query_params.get('teacher', None)
         queryset = models.Request.objects.all()
         send_simple_email()
-        print('oi')
 
         if search:
             queryset = queryset.filter(Q(name__icontains=search) | Q(course__icontains=search) | Q(status__icontains=search) | Q(registration__icontains=search))
