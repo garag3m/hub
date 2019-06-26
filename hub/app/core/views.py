@@ -21,8 +21,8 @@ class UUIDUserViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         if self.request.user.is_superuser:
-            return core.UUIDUser.objects.all()
-        return core.UUIDUser.objects.filter(group=self.request.user.group)
+            return models.UUIDUser.objects.all()
+        return models.UUIDUser.objects.filter(group=self.request.user.group)
 
     def get_serializer_class(self):
         if self.request.method.lower() == 'get':
