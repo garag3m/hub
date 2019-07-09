@@ -1,5 +1,4 @@
 from rest_framework import viewsets, permissions
-# from app.ifood.signals import send_simple_email
 from app.ifood.tasks import send_simple_email
 from . import models, serializers
 
@@ -16,7 +15,7 @@ class RequestViewSet(viewsets.ModelViewSet):
         status = self.request.query_params.get('status', None)
         teacher = self.request.query_params.get('teacher', None)
         queryset = models.Request.objects.all()
-        send_simple_email()
+        print(self.request.user.email)
 
         if search:
             queryset = queryset.filter(Q(name__icontains=search) | Q(course__icontains=search) | Q(status__icontains=search) | Q(registration__icontains=search))
@@ -40,10 +39,6 @@ class RequestViewSet(viewsets.ModelViewSet):
             return serializers.RequestSerializer
         return serializers.CreateRequestSerializer
     
-    # def create(self, request, *args, **kwargs):
-    #     send_simple_email()
-    #     return super(RequestViewSet, self).create(request, *args, **kwargs)
-
 # StudentMeal viewset
 # - - - - - - - - - - - - - - - - - - -
 class StudentMealViewSet(viewsets.ModelViewSet):
@@ -58,7 +53,7 @@ class StudentMealViewSet(viewsets.ModelViewSet):
         queryset = models.StudentMeal.objects.all()
 
         if search:
-                queryset = queryset.filter(Q(student__icontains=search) | Q(date__icontains=search) | Q(type__icontains=search))
+            queryset = queryset.filter(Q(student__icontains=search) | Q(date__icontains=search) | Q(type__icontains=search))
         else:                                                                                                                                                                        
             if student:
                 queryset = queryset.filter(students=students)
