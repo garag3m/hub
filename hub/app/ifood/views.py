@@ -1,5 +1,7 @@
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, status
 from app.ifood.tasks import send_simple_email
+from rest_framework.response import Response
+from django.db.models import Q
 from . import models, serializers
 
 
@@ -15,10 +17,9 @@ class RequestViewSet(viewsets.ModelViewSet):
         status = self.request.query_params.get('status', None)
         teacher = self.request.query_params.get('teacher', None)
         queryset = models.Request.objects.all()
-        print(self.request.user.email)
 
         if search:
-            queryset = queryset.filter(Q(name__icontains=search) | Q(course__icontains=search) | Q(status__icontains=search) | Q(registration__icontains=search))
+            queryset = queryset.filter(Q(date__icontains=search) | Q(type__icontains=search) | Q(status__icontains=search))
         else:                                                                                                                                                                        
             if students:
                 queryset = queryset.filter(students=students)
@@ -31,6 +32,12 @@ class RequestViewSet(viewsets.ModelViewSet):
             if teacher:
                 queryset = queryset.filter(teacher=teacher)
         return queryset
+    
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if (instance.status==1):
+            return super(RequestViewSet, self).destroy(request, *args, **kwargs)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
     
     def get_serializer_class(self):
         if self.request.method.lower() == 'get':

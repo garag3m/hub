@@ -39,10 +39,17 @@ class StudentMeal(core.CreateUpdateModel):
         (1, 'Almoço'),
         (2, 'Janta')
     )
-    
+
+    STATUS = (
+        (1, 'Presença'),
+        (2, 'Ausência')
+    )
+
+    request = models.ForeignKey(Request, on_delete=models.CASCADE, related_name='refeição', null=True)
     student = models.ForeignKey(edu.Student, on_delete=models.CASCADE, related_name='refeição')
     date = models.DateField()
     type = models.IntegerField(choices=TYPE, verbose_name='Tipo de refeição')
+    attendance = models.IntegerField(choices=STATUS, verbose_name='Status de presença', null=True)
 
     def __str__(self):
         return f'{self.student} {self.date} {self.type}'
