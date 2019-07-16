@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'app.ifood',
     'app.core',
     'app.edu',
+    'app.cere',
 ]
 
 MIDDLEWARE = [
