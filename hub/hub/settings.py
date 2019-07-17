@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'app.core',
     'app.edu',
     'app.cere',
+    'app.ctrl_p',
 ]
 
 MIDDLEWARE = [
