@@ -28,10 +28,9 @@ class CreateRequestSerializer(serializers.ModelSerializer):
     students = StudentSerializer(many=True, read_only=True)
     student_list = serializers.CharField(write_only=True)
     type = serializers.ChoiceField(choices=models.Request.STATUS)
-
+    
 
     def create(self, validated_data):
-        print(validated_data)
         students = validated_data.pop('student_list').split(',')
         request = models.Request.objects.create(**validated_data, teacher=self.context['request'].user)
         request.students.set(students)

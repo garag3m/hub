@@ -1,5 +1,4 @@
 from rest_framework import viewsets, permissions, status
-from app.ifood.tasks import send_simple_email
 from rest_framework.response import Response
 from django.db.models import Q
 from . import models, serializers

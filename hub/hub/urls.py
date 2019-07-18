@@ -22,6 +22,7 @@ from django.conf import settings
 from app.core import views as core
 from app.edu import views as edu
 from app.ifood import views as ifood
+from app.ctrl_p import views as ctrl_p
 
 router = routers.DefaultRouter()
 
@@ -29,7 +30,7 @@ router.register(r'user', core.UUIDUserViewSet, base_name='api-core')
 router.register(r'student', edu.StudentViewSet, base_name='api-student')
 router.register(r'meal', ifood.StudentMealViewSet, base_name='api-meal')
 router.register(r'request', ifood.RequestViewSet, base_name='api-request')
-
+router.register(r'ctrl_p', ctrl_p.FileViewSet, base_name='api-ctrl_p')
 
 
 urlpatterns = [
