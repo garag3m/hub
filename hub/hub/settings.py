@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'app.ifood',
     'app.core',
     'app.edu',
+    'app.cere',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +117,7 @@ AUTH_USER_MODEL = 'core.UUIDUser'
 # RESTFramework
 # - - - - - - - - - - - - - - - - - - -
 REST_FRAMEWORK = {
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100,
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -123,8 +125,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-        #'rest_framework.permissions.AllowAny',
-    )
+        'rest_framework.permissions.AllowAny',
+    ),
 }
 
 # Huey
@@ -159,8 +161,8 @@ EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'adriel.higor@academico.ifpb.edu.br'
-EMAIL_HOST_PASSWORD = 'Adr15025'
+EMAIL_HOST_USER = 'hubgarag3m.ifpb@gmail.com'
+EMAIL_HOST_PASSWORD = '!@#123qweasd'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 STATIC_URL = '/static/'
