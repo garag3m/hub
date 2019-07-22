@@ -18,9 +18,9 @@ class FileViewSet(viewsets.ModelViewSet):
             if user:
                 queryset = queryset.filter(user=user) 
             if name:
-                queryset = queryset.filter(name=name) 
+                queryset = queryset.filter(name__icontains=name) 
             if status:
-                queryset = queryset.filter(status=status)
+                queryset = queryset.filter(status__icontains=status)
 
         return queryset
         
