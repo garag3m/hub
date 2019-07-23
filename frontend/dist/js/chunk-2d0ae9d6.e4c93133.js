@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0ae9d6"],{"0b8f":function(n,e,t){"use strict";t.r(e);var a=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("b-card",{attrs:{"no-body":""}},[t("element-table",{attrs:{endpoint:"patients",columns:n.columns}})],1)},o=[],s=t("4227"),c={components:{ElementTable:s["a"]},data:function(){return{columns:{name:"Nome",is_active:"Ativo",actions:"Ações"}}}},l=c,u=t("2877"),i=Object(u["a"])(l,a,o,!1,null,null,null);e["default"]=i.exports}}]);
-//# sourceMappingURL=chunk-2d0ae9d6.e4c93133.js.map
