@@ -1,12 +1,12 @@
 from huey import crontab
 from huey.contrib.djhuey import periodic_task, task
 from app.ifood import models
-from datetime import *
+from datetime import datetime
 from django.core.mail import EmailMessage
-from django.http import HttpResponse
+
 
 @task()
-def send_simple_email(title, message, addressee):
+def send_request_status_email(title, message, addressee):
     email = EmailMessage(title, message, to=[addressee])
     email.send()
 
