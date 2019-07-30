@@ -27,25 +27,35 @@ def create_request_post_save(sender, instance, created, **kwargs):
         send_request_status_email(adm_title, adm_message, adm_address)
     else:
         if instance.status == 1:
-            print('eu sou 1')
+            #Email sent to user whenever a request is updated
+            title = "Alteração de pedido"
+            message = """
+            O pedido de refeição extra foi atualizado com sucesso!
+            Aguarde a avaliação da requisição. Cordialmente cordenação.
+            """
+            send_request_status_email(title, message, addressee)
+
+            #Email sent to admin whenever a request is updated
+            adm_title = "Uma nova alteração de pedido recebida"
+            adm_message = (f"""
+            Um pedido de refeição foi atualizado pelo usuário {user.username}.
+            Pedido aguarda avaliação das novas diretrizes.
+            """)
+            send_request_status_email(adm_title, adm_message, adm_address)
+
         elif instance.status == 2:
-            print('eu sou 2')
+            #Email sent to user whenever a request is approved
+            title = "Solicitação Aceito!"
+            message = (f"""
+            Seu pedido de refeição foi aceito pela coordenação.
+            """)
+            send_request_status_email(title, message, addressee)
         else:
-            print('eu sou 3')
-        #Email sent to user whenever a request is updated
-        # title = "Alteração de pedido"
-        # message = """
-		# O pedido de refeição extra foi atualizado com sucesso!
-		# Aguarde a avaliação da requisição. Cordialmente cordenação.
-		# """
-        # send_request_status_email(title, message, addressee)
-
-        #Email sent to admin whenever a request is updated
-        # adm_title = "Uma nova alteração de pedido recebida"
-        # adm_message = (f"""
-        # Um pedido de refeição foi atualizado pelo usuário {user.username}.
-        # Pedido aguarda avaliação das novas diretrizes.
-        # """)
-        # send_request_status_email(adm_title, adm_message, adm_address)
-
+            #Email sent to user whenever a request is rejected
+            title = "Solicitação Recusada!"
+            message = (f"""
+            Seu pedido de refeição foi recusado pela coordenação.
+            """)
+            send_request_status_email(title, message, addressee)
+        
 post_save.connect(create_request_post_save, sender=Request)

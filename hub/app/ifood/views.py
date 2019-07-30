@@ -32,6 +32,12 @@ class RequestViewSet(viewsets.ModelViewSet):
                 queryset = queryset.filter(teacher=teacher)
         return queryset
     
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if (instance.status==1):
+            return super(RequestViewSet, self).update(request, *args, **kwargs)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         if (instance.status==1):

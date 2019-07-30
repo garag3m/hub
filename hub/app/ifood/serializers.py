@@ -34,10 +34,10 @@ class CreateRequestSerializer(serializers.ModelSerializer):
         students = validated_data.pop('student_list').split(',')
         request = models.Request.objects.create(**validated_data, teacher=self.context['request'].user)
         request.students.set(students)
-        for pk in students:
-            print(request.pk)
-            smvalited_data = {'request': request.pk, 'student': pk, 'date': request.date, 'type': request.type}
-            StudentMealSerializer.create(self, validated_data)
+        # for pk in students:
+        #     print(request.pk)
+        #     validated_data = {'request': request.pk, 'student': pk, 'date': request.date, 'type': request.type}
+        #     StudentMealSerializer.create(self, validated_data)
         return RequestSerializer(request).data
 
     def update(self, instance, validated_data):
