@@ -20,7 +20,7 @@ class Address(models.Model):
 class Company(models.Model):
     name= models.CharField(max_length=100, verbose_name='Nome')
     cnpj= models.CharField(max_length=17, verbose_name='CNPJ')
-    Address= models.ForeignKey(Address, on_delete=models.CASCADE, null=True, verbose_name='Endereço')
+    address= models.ForeignKey(Address, on_delete=models.CASCADE, null=True, verbose_name='Endereço')
     owner= models.CharField(max_length=100, verbose_name='Proprietário')
     agreement_number=models.IntegerField(blank=True,verbose_name='Número do convênio')
     cpf_owner=models.CharField(max_length=14,verbose_name='CPF do proprietário')

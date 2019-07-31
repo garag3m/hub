@@ -28,7 +28,7 @@ class Request(core.CreateUpdateModel):
     
     def __str__(self):
         return f'{self.justification_teacher} {self.status}'
-
+                                                                                                                                                                                                                                                                                    
     class Meta:
         verbose_name = 'pedido'
         verbose_name_plural = 'pedidos'
