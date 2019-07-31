@@ -1,5 +1,4 @@
 from rest_framework import viewsets, permissions, status
-from app.ifood.tasks import send_simple_email
 from rest_framework.response import Response
 from django.db.models import Q
 from . import models, serializers
@@ -32,6 +31,12 @@ class RequestViewSet(viewsets.ModelViewSet):
             if teacher:
                 queryset = queryset.filter(teacher=teacher)
         return queryset
+    
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if (instance.status==1):
+            return super(RequestViewSet, self).update(request, *args, **kwargs)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
     
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()

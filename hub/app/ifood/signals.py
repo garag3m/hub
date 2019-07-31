@@ -1,6 +1,6 @@
 from app.ifood.models import Request
 from django.db.models.signals import post_save
-from app.ifood.tasks import send_simple_email
+from app.ifood.tasks import send_request_status_email
 from app.core import models
 
 
@@ -16,7 +16,7 @@ def create_request_post_save(sender, instance, created, **kwargs):
         O pedido de refeição extra foi realizado com sucesso!
         Aguarde a avaliação da requisição. Cordialmente cordenação.
         """
-        send_simple_email(title, message, addressee)
+        send_request_status_email(title, message, addressee)
         
         #Email sent to admin whenever a request is created
         adm_title = "Um novo pedido recebido"
@@ -24,22 +24,38 @@ def create_request_post_save(sender, instance, created, **kwargs):
         Um novo pedido de refeição foi feito pelo usuário {user.username}.
         Pedido aguarda avaliação.
         """)
-        send_simple_email(adm_title, adm_message, adm_address)
+        send_request_status_email(adm_title, adm_message, adm_address)
     else:
-        #Email sent to user whenever a request is updated
-        title = "Alteração de pedido"
-        message = """
-		O pedido de refeição extra foi atualizado com sucesso!
-		Aguarde a avaliação da requisição. Cordialmente cordenação.
-		"""
-        send_simple_email(title, message, addressee)
+        if instance.status == 1:
+            #Email sent to user whenever a request is updated
+            title = "Alteração de pedido"
+            message = """
+            O pedido de refeição extra foi atualizado com sucesso!
+            Aguarde a avaliação da requisição. Cordialmente cordenação.
+            """
+            send_request_status_email(title, message, addressee)
 
-        #Email sent to admin whenever a request is updated
-        adm_title = "Uma nova alteração de pedido recebida"
-        adm_message = (f"""
-        Um pedido de refeição foi atualizado pelo usuário {user.username}.
-        Pedido aguarda avaliação das novas diretrizes.
-        """)
-        send_simple_email(adm_title, adm_message, adm_address)
+            #Email sent to admin whenever a request is updated
+            adm_title = "Uma nova alteração de pedido recebida"
+            adm_message = (f"""
+            Um pedido de refeição foi atualizado pelo usuário {user.username}.
+            Pedido aguarda avaliação das novas diretrizes.
+            """)
+            send_request_status_email(adm_title, adm_message, adm_address)
 
+        elif instance.status == 2:
+            #Email sent to user whenever a request is approved
+            title = "Solicitação Aceito!"
+            message = (f"""
+            Seu pedido de refeição foi aceito pela coordenação.
+            """)
+            send_request_status_email(title, message, addressee)
+        else:
+            #Email sent to user whenever a request is rejected
+            title = "Solicitação Recusada!"
+            message = (f"""
+            Seu pedido de refeição foi recusado pela coordenação.
+            """)
+            send_request_status_email(title, message, addressee)
+        
 post_save.connect(create_request_post_save, sender=Request)

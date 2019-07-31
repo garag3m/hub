@@ -44,12 +44,14 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'huey.contrib.djhuey',
+    'corsheaders',
 
     # Hub
     'app.ifood',
     'app.core',
     'app.edu',
     'app.cere',
+    'app.ctrl_p',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +62,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware', 
 ]
 
 ROOT_URLCONF = 'hub.urls'
@@ -117,8 +122,10 @@ AUTH_USER_MODEL = 'core.UUIDUser'
 # RESTFramework
 # - - - - - - - - - - - - - - - - - - -
 REST_FRAMEWORK = {
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100,
+<<<<<<< HEAD
     # 'DEFAULT_AUTHENTICATION_CLASSES': (
     #     'rest_framework.authentication.TokenAuthentication',
     # ),
@@ -126,6 +133,15 @@ REST_FRAMEWORK = {
     #     'rest_framework.permissions.IsAuthenticated',
     #     'rest_framework.permissions.AllowAny',
     #)
+=======
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
+    ),
+>>>>>>> 084fe3de038ff633adde67a49966110af87de136
 }
 
 # Huey
@@ -155,6 +171,25 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+CORS_ALLOW_METHODS = (
+    'GET',
+    'POST',
+)
+
 
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
