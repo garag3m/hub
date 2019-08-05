@@ -45,7 +45,7 @@ class Document_opinion(models.Model):
     company= models.ForeignKey(Company, on_delete=models.CASCADE, verbose_name='Empresa')
 
     def __str__(self):
-        return self.process_number + ' ' + self.company.name
+        return str(self.process_number) + ' ' + self.company.name
 
     class Meta:
         verbose_name_plural= 'Parecer'

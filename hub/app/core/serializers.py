@@ -46,4 +46,4 @@ class UUIDUserSimpleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.UUIDUser
-        fields = ('pk', 'username', 'first_name', 'email')
+        fields = ('pk', 'username', 'first_name', 'last_name', 'email')
