@@ -1,8 +1,10 @@
 from django.db import models
 
+from app.core import models as core
+
 # Create your models here.
 
-class Address(models.Model):
+class Address(core.CreateUpdateModel):
     city= models.CharField(max_length=30, verbose_name='Cidade') 
     neighborhood= models.CharField(max_length=30, verbose_name='Bairro')
     street= models.CharField(max_length=30, verbose_name='Rua')
@@ -17,7 +19,7 @@ class Address(models.Model):
         verbose_name= 'Endereço'
         verbose_name_plural='Endereços'
 
-class Company(models.Model):
+class Company(core.CreateUpdateModel):
     name= models.CharField(max_length=100, verbose_name='Nome')
     cnpj= models.CharField(max_length=17, verbose_name='CNPJ')
     address= models.ForeignKey(Address, on_delete=models.CASCADE, null=True, verbose_name='Endereço')
@@ -33,7 +35,7 @@ class Company(models.Model):
         verbose_name_plural='Empresas'
 
 
-class Document_opinion(models.Model):
+class Document_opinion(core.CreateUpdateModel):
     STATUS = (
         (1, 'Deferido'),
         (2, 'Indeferido')
@@ -52,7 +54,7 @@ class Document_opinion(models.Model):
         verbose_name_plural='Pareceres'
 
 
-class Stage(models.Model):
+class Stage(core.CreateUpdateModel):
 
     SUPPORT = (
         (1, 'NÃO'),
