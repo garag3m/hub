@@ -1,5 +1,5 @@
 <template>
-  <user-form :user="user" @formSumit="create" />
+  <userform :user="user" @formSumit="create" />
 </template>
 
 <script>
@@ -11,33 +11,31 @@ export default {
 
   data: () => ({
     user: {
-      cpf: null,
-      password: null,
-      confirm_password: null,
-      email: null,
+      username: null,
       first_name: null,
       last_name: null,
-      cell_phone: null,
-      is_active: true
-    }
+      email: null,
+      password: null
+      }
   }),
 
   methods: {
     create (data) {
+      console.log('hey')
+      console.log(data)
       this.$http.post('users/', data)
         .then((response) => {
+          console.log(response)
           this.$router.push({ name: 'users-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
             localStorage.removeItem('jwt')
             this.$router.push({ name: 'login' })
-          } else {
-            this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro no cadatro de usuário',
-            message: 'Não foi possível cadastrar o usuário.'
+            title: 'Erro no cadastro de paciente',
+            message: 'Não foi possível cadastrar o paciente.'
           })
         })
     }
