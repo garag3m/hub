@@ -1,0 +1,1 @@
+default_app_config = 'app.ctrl_p.apps.CtrlPConfig'
