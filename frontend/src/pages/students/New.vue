@@ -1,32 +1,31 @@
 <template>
-  <userform :user="user" @formSumit="create" />
+  <student-form :student="student" @formSumit="create" />
 </template>
 
 <script>
-import UserForm from './Form.vue'
+import StudentForm from './Form.vue'
 export default {
   components: {
-    UserForm
+    StudentForm
   },
 
   data: () => ({
-    user: {
-      username: null,
-      first_name: null,
-      last_name: null,
-      email: null,
-      password: null
-      }
+    student: {
+      name: null,
+      course: null,
+      status: null,
+      registration: null
+    }
   }),
 
   methods: {
     create (data) {
       console.log('hey')
       console.log(data)
-      this.$http.post('users/', data)
+      this.$http.post('students/', data)
         .then((response) => {
           console.log(response)
-          this.$router.push({ name: 'users-list' })
+          this.$router.push({ name: 'students-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {

@@ -1,8 +1,8 @@
 <template>
   <b-card no-body>
     <element-table
-      :endpoint="'users'"
-      :columns="columns" />
+      :endpoint="'requests'"
+      :columns="columns" /> 
   </b-card>
 </template>
 
@@ -16,10 +16,12 @@ export default {
 
   data: () => ({
     columns: {
-      'username': 'Nome de usuário',
-      'first_name': 'Nome',
-      'last_name': 'Sobrenome',
-      'email': 'Email'
+      'date': 'Data',
+      'type': 'Tipo',
+      'status': 'Estado',
+      'justification_teacher': 'Descrição',
+      'teacher': 'Professor',
+      'students': 'Alunos'
     }
   })
 }

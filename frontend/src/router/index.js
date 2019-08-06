@@ -10,15 +10,12 @@ import Layout2 from '@/layout/Layout2'
 // Routes
 import authRoutes from './auth.js'
 import userRoutes from './modules/users.js'
-import patientRoutes from './modules/patients.js'
-import breastTypeRoutes from './modules/breast_types.js'
-import categoriesRadiologicalFindingRoutes from './modules/categories_radiological_findings.js'
-import locationRadiologicalFindingRoutes from './modules/location_radiological_findings.js'
-import resultUltrasoundNoduleRoutes from './modules/results_ultrasound_nodules.js'
-import skinTypeRoutes from './modules/skin_types.js'
-import typeBenignFindingRoutes from './modules/types_benign_findings.js'
-import typeBreastSurgeryRoutes from './modules/types_breast_surgeries.js'
-import typeRadiologicalFindingRoutes from './modules/types_radiological_findings.js'
+import studentsRoutes from './modules/students.js'
+import requestsRoutes from './modules/requests.js'
+import mealsRoutes from './modules/meals.js'
+import companysRoutes from './modules/companys.js'
+import stagesRoutes from './modules/stages.js'
+import documentOpinionsRoutes from './modules/document_opinions.js'
 
 // Middlewares
 import authMiddleware from './middlewares/auth.js'
@@ -38,15 +35,12 @@ const ROUTES = [
       }
     ]
       .concat(userRoutes)
-      .concat(patientRoutes)
-      .concat(breastTypeRoutes)
-      .concat(categoriesRadiologicalFindingRoutes)
-      .concat(locationRadiologicalFindingRoutes)
-      .concat(resultUltrasoundNoduleRoutes)
-      .concat(skinTypeRoutes)
-      .concat(typeBenignFindingRoutes)
-      .concat(typeBreastSurgeryRoutes)
-      .concat(typeRadiologicalFindingRoutes)
+      .concat(studentsRoutes)
+      .concat(requestsRoutes)
+      .concat(mealsRoutes)
+      .concat(companysRoutes)
+      .concat(stagesRoutes)
+      .concat(documentOpinionsRoutes)
   }
 ]
   .concat(authRoutes)

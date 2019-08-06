@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://10.3.132.126:8000/'
+const API_URL = 'http://localhost:8000/api'
 
 const http = axios.create({
     baseURL: API_URL,
@@ -13,7 +13,7 @@ http.interceptors.request.use((config) => {
     const token = localStorage.getItem('jwt')
 
     if (token) {
-        config.headers.Authorization = `jwt ${token}`
+        config.headers.Authorization = `Token ${token}`
 }
 
     return config

@@ -26,14 +26,14 @@ from app.cere import views as cere
 
 router = routers.DefaultRouter()
 
-router.register(r'user', core.UUIDUserViewSet, base_name='api-core')
-router.register(r'student', edu.StudentViewSet, base_name='api-student')
-router.register(r'meal', ifood.StudentMealViewSet, base_name='api-meal')
-router.register(r'request', ifood.RequestViewSet, base_name='api-request')
-router.register(r'company', cere.CompanyViewSet, base_name='api-company')
-router.register(r'document_opinion', cere.Document_opinionViewSet, base_name='api-document_opinion')
-router.register(r'address', cere.AddressViewSet, base_name='api-address')
-router.register(r'stage', cere.StageViewSet, base_name='api-stage')
+router.register(r'users', core.UUIDUserViewSet, base_name='api-core')
+router.register(r'students', edu.StudentViewSet, base_name='api-student')
+router.register(r'meals', ifood.StudentMealViewSet, base_name='api-meal')
+router.register(r'requests', ifood.RequestViewSet, base_name='api-request')
+router.register(r'companys', cere.CompanyViewSet, base_name='api-company')
+router.register(r'document-opinions', cere.Document_opinionViewSet, base_name='api-document_opinion')
+router.register(r'addresses', cere.AddressViewSet, base_name='api-address')
+router.register(r'stages', cere.StageViewSet, base_name='api-stage')
 
 
 
