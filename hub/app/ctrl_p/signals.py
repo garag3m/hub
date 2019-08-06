@@ -12,14 +12,14 @@ def create_file_post_save(sender, instance, created, **kwargs):
         #Email sent to user whenever a File is sent
         title = "Impressão requisitada com sucesso!"
         message = (f"""
-        A requisição de impressão de {instance.name} foi recebida.
+        A requisição de impressão de {instance.name} foi enviada.
         """) 
         send_file_status_email(title, message, addressee)
     else:
         #Email sent to user whenever a File is updated
         title = "Impressão atualizada com sucesso!"
         message = (f"""
-        A atualização da impressão de {instance.name} foi recebida.
+        A atualização da impressão de {instance.name} foi enviada.
         """) 
         send_file_status_email(title, message, addressee)
 
