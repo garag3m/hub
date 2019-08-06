@@ -93,9 +93,9 @@ export default {
 
       this.axios.get(`${this.endpoint}/`)
         .then((response) => {
-          this.data = response.data
+          this.data = Object.values(response.data.results)
           this.onLoading = false
-        })
+        })  
         .catch(() => {
           this.onLoading = false
         })

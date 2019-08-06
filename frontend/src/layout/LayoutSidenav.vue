@@ -20,19 +20,20 @@
     <div class="sidenav-inner" :class="{ 'py-1': orientation !== 'horizontal' }">
       <sidenav-router-link icon="ion ion-md-desktop" to="/" :exact="true">Home</sidenav-router-link>
       <sidenav-router-link icon="ion ion-md-people" :to="{ name: 'users-list' }" :exact="true">Usuários</sidenav-router-link>
-      <sidenav-router-link icon="ion ion-md-people" :to="{ name: 'patients-list' }" :exact="true">Pacientes</sidenav-router-link>
-
-      <!-- aux -->
       <sidenav-menu icon="ion ion-ios-albums" :active="isMenuActive('/aux')" :open="isMenuOpen('/aux')">
-        <template slot="link-text">Tabela Auxiliares</template>
-        <sidenav-router-link :to="{ name: 'breast-types-list' }" :exact="true">Tipos de Mama</sidenav-router-link>
-        <sidenav-router-link :to="{ name: 'categories-radiological-findings-list' }" :exact="true">Categorias de Achado Radiológico</sidenav-router-link>
-        <sidenav-router-link :to="{ name: 'location-radiological-findings-list' }" :exact="true">Localizações de Achado</sidenav-router-link>
-        <sidenav-router-link :to="{ name: 'skin-types-list' }" :exact="true">Tipos de Pele</sidenav-router-link>
-        <sidenav-router-link :to="{ name: 'types-breast-surgeries-list' }" :exact="true">Tipos de Cirurgia Mamária</sidenav-router-link>
-        <sidenav-router-link :to="{ name: 'types-radiological-findings-list' }" :exact="true">Tipos de Achado Radiológico</sidenav-router-link>
-        <sidenav-router-link :to="{ name: 'types-benign-findings-list' }" :exact="true">Tipos de Achado Benigno</sidenav-router-link>
-        <sidenav-router-link :to="{ name: 'results-ultrasound-nodules-list' }" :exact="true">Resultado Nódulo Ultrassom</sidenav-router-link>
+        <template slot="link-text">EDU</template>
+        <sidenav-router-link icon="ion ion-md-people" :to="{ name: 'students-list' }" :exact="true">Alunos</sidenav-router-link>
+      </sidenav-menu>
+      <sidenav-menu icon="ion ion-ios-albums" :active="isMenuActive('/aux')" :open="isMenuOpen('/aux')">
+        <template slot="link-text">IFOOD</template>
+        <sidenav-router-link icon="ion ion-md-list" :to="{ name: 'requests-list' }" :exact="true">Pedidos</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-list" :to="{ name: 'meals-list' }" :exact="true">Refeição</sidenav-router-link>
+      </sidenav-menu>
+      <sidenav-menu icon="ion ion-ios-albums" :active="isMenuActive('/aux')" :open="isMenuOpen('/aux')">
+        <template slot="link-text">CERE</template>
+        <sidenav-router-link icon="ion ion-md-list" :to="{ name: 'companys-list' }" :exact="true">Empresas</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-list" :to="{ name: 'stages-list' }" :exact="true">Estágios</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-list" :to="{ name: 'document-opinions-list' }" :exact="true">Pareceres</sidenav-router-link>
       </sidenav-menu>
     </div>
   </sidenav>

@@ -66,6 +66,7 @@
 import Loading from 'vue-loading-overlay'
 // Import stylesheet
 import 'vue-loading-overlay/dist/vue-loading.css'
+import { setTimeout } from 'timers';
 
 export default {
   name: 'login-v3',
@@ -88,7 +89,7 @@ export default {
     login () {
       this.isLoading = true
       // API login request
-      this.$http.post('/api/auth/', { username: this.credentials.username, password: this.credentials.password })
+      this.$http.post('auth/', { username: this.credentials.username, password: this.credentials.password })
         .then((response) => {
           console.log(response)
           localStorage.setItem('jwt', response.data.token)

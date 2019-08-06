@@ -19,7 +19,7 @@ class RequestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Request
-        fields = ('pk', 'students', 'date', 'type', 'status', 'justification_teacher', 'justification_CAEST')
+        fields = ('pk', 'students', 'date', 'type', 'status', 'justification_teacher', 'justification_CAEST', 'teacher')
 
 
 class CreateRequestSerializer(serializers.ModelSerializer):
