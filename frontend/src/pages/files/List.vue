@@ -1,7 +1,7 @@
 <template>
   <b-card no-body>
     <element-table
-      :endpoint="'requests'"
+      :endpoint="'files'"
       :columns="columns" /> 
   </b-card>
 </template>
@@ -16,11 +16,9 @@ export default {
 
   data: () => ({
     columns: {
-      'students_amount': 'Alunos',
-      'teacher_name': 'Professor',
-      'formated_date': 'Data',
-      'type_name': 'Tipo',
+      'user_name': 'Requerente',
       'status_name': 'Status',
+      'file': 'Arquivo'
     }
   })
 }

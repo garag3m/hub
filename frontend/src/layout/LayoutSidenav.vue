@@ -2,12 +2,10 @@
   <sidenav :orientation="orientation" class="sidenav sidenav-vertical layout-sidenav bg-white">
     <!-- Brand demo (see src/demo.css) -->
     <div class="app-brand demo" v-if="orientation !== 'horizontal'">
-      <span class="app-brand-logo">
-        <img :src="`${baseUrl}img/logo reduzida.png`" height="35">
-      </span>
       <router-link to="/" class="app-brand-text demo sidenav-text font-weight-normal ml-2">
-        livre<br />
-        <small style="font-size: 8px;">CENTRO DE ATENÇÃO <br />À MAMA</small>
+        <span class="app-brand-logo">
+          <img :src="`${baseUrl}img/logo_hub.png`" height="36">
+        </span>
       </router-link>
 
       <a href="javascript:void(0)" class="layout-sidenav-toggle sidenav-link text-large ml-auto" @click="toggleSidenav()">
@@ -34,6 +32,10 @@
         <sidenav-router-link icon="ion ion-md-list" :to="{ name: 'companys-list' }" :exact="true">Empresas</sidenav-router-link>
         <sidenav-router-link icon="ion ion-md-list" :to="{ name: 'stages-list' }" :exact="true">Estágios</sidenav-router-link>
         <sidenav-router-link icon="ion ion-md-list" :to="{ name: 'document-opinions-list' }" :exact="true">Pareceres</sidenav-router-link>
+      </sidenav-menu>
+      <sidenav-menu icon="ion ion-ios-albums" :active="isMenuActive('/aux')" :open="isMenuOpen('/aux')">
+        <template slot="link-text">CTRL_P</template>
+        <sidenav-router-link icon="ion ion-md-list" :to="{ name: 'files-list' }" :exact="true">Documento</sidenav-router-link>
       </sidenav-menu>
     </div>
   </sidenav>

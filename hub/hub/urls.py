@@ -23,6 +23,7 @@ from app.core import views as core
 from app.edu import views as edu
 from app.ifood import views as ifood
 from app.cere import views as cere
+from app.ctrl_p import views as ctrl_p
 
 router = routers.DefaultRouter()
 
@@ -34,6 +35,7 @@ router.register(r'companys', cere.CompanyViewSet, base_name='api-company')
 router.register(r'document-opinions', cere.Document_opinionViewSet, base_name='api-document_opinion')
 router.register(r'addresses', cere.AddressViewSet, base_name='api-address')
 router.register(r'stages', cere.StageViewSet, base_name='api-stage')
+router.register(r'files', ctrl_p.FileViewSet, base_name='api-files')
 
 
 

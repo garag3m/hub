@@ -16,6 +16,7 @@ import mealsRoutes from './modules/meals.js'
 import companysRoutes from './modules/companys.js'
 import stagesRoutes from './modules/stages.js'
 import documentOpinionsRoutes from './modules/document_opinions.js'
+import filesRoutes from './modules/files.js'
 
 // Middlewares
 import authMiddleware from './middlewares/auth.js'
@@ -41,6 +42,7 @@ const ROUTES = [
       .concat(companysRoutes)
       .concat(stagesRoutes)
       .concat(documentOpinionsRoutes)
+      .concat(filesRoutes)
   }
 ]
   .concat(authRoutes)

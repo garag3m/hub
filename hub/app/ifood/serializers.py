@@ -14,12 +14,10 @@ from app.edu.serializers import StudentSerializer
 # Request serializer
 # - - - - - - - - - - - - - - - - - - -
 class RequestSerializer(serializers.ModelSerializer):
-    
-    students = StudentSerializer(many=True)
 
     class Meta:
         model = models.Request
-        fields = ('pk', 'students', 'date', 'type', 'status', 'justification_teacher', 'justification_CAEST', 'teacher')
+        fields = ('students_amount', 'teacher_name', 'type_name', 'status_name', 'formated_date')
 
 
 class CreateRequestSerializer(serializers.ModelSerializer):
@@ -34,10 +32,6 @@ class CreateRequestSerializer(serializers.ModelSerializer):
         students = validated_data.pop('student_list').split(',')
         request = models.Request.objects.create(**validated_data, teacher=self.context['request'].user)
         request.students.set(students)
-        # for pk in students:
-        #     print(request.pk)
-        #     validated_data = {'request': request.pk, 'student': pk, 'date': request.date, 'type': request.type}
-        #     StudentMealSerializer.create(self, validated_data)
         return RequestSerializer(request).data
 
     def update(self, instance, validated_data):
@@ -61,8 +55,7 @@ class CreateRequestSerializer(serializers.ModelSerializer):
 
 
 class StudentMealSerializer(serializers.ModelSerializer):
-    student = StudentSerializer()
 
     class Meta:
         model = models.StudentMeal
-        fields = ('student' ,'date', 'type')
+        fields = ('student_name' ,'formated_date', 'type_name')

@@ -17,6 +17,19 @@ class File(core.CreateUpdateModel):
   file = models.FileField(upload_to='documents/', verbose_name='Arquivo')
   status = models.IntegerField(choices=STATUS, verbose_name='Status de Impressão', default=1)
 
+  @property
+  def user_name(self):
+    return self.user.first_name
+
+  @property
+  def status_name(self):
+    if self.status == 1:
+      return 'Aguardando Impressão'
+    elif self.status == 2:
+      return 'Impressão Concluída'
+    elif self.status == 3:
+      return 'Impressão Recusada'
+
   def __str__(self):
     return self.name
 

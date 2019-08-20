@@ -6,7 +6,7 @@ class FileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = models.File
-        fields = ('pk', 'user', 'name', 'copy', 'status')
+        fields = ('user_name', 'status_name', 'file')
 
 # class CreateFileSerializer(serializers.ModelSerializer):
 #     pk = serializers.UUIDField(read_only=True)

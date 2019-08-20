@@ -23,11 +23,11 @@ class  Document_opinionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Document_opinion
-        fields = ('pk','date', 'process_number', 'status', 'company')
+        fields = ('pk','formated_date', 'process_number', 'status_name', 'company_name')
 
 
 class  StageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Stage
-        fields = ('pk','company', 'advisor', 'supervisor', 'sector', 'start_date', 'end_date','week_hours','total_hours','days','begins','ends','document_secure','support')
+        fields = ('pk','company_name', 'advisor', 'supervisor', 'sector', 'start_date', 'end_date','week_hours','total_hours','days','begins','ends','document_secure','support')

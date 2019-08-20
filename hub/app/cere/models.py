@@ -46,6 +46,22 @@ class Document_opinion(core.CreateUpdateModel):
     status= models.IntegerField(choices= STATUS, verbose_name='Status')
     company= models.ForeignKey(Company, on_delete=models.CASCADE, verbose_name='Empresa')
 
+    @property
+    def formated_date(self):
+        d = str(self.date)
+        return d[8:10] + '/' + d[5:7] + '/' + d[0:4]
+
+    @property
+    def company_name(self):
+        return self.company.name
+
+    @property
+    def status_name(self):
+        if self.status == 1:
+            return 'Deferido'
+        elif self.status == 2:
+            return 'Indeferido'
+
     def __str__(self):
         return str(self.process_number) + ' ' + self.company.name
 
@@ -74,6 +90,11 @@ class Stage(core.CreateUpdateModel):
     ends=models.CharField(max_length=20, verbose_name='Hora final')
     document_secure= models.CharField(max_length=20, verbose_name='Seguro')
     support= models.IntegerField(choices= SUPPORT, verbose_name='auxílio')
+
+
+    @property
+    def company_name(self):
+        return self.company.name
 
     class Meta:
         verbose_name= 'Estágio'

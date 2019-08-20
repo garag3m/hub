@@ -16,10 +16,10 @@ export default {
 
   data: () => ({
     columns: {
+      'company_name': 'Empresa', 
       'process_number': 'Nº de processo',
-      'date': 'Data',
-      'status': 'Status',
-      'company': 'Empresa'
+      'formated_date': 'Data',
+      'status_name': 'Status',
     }
   })
 }
