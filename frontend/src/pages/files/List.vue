@@ -18,7 +18,8 @@ export default {
     columns: {
       'user_name': 'Requerente',
       'status_name': 'Status',
-      'file': 'Arquivo'
+      'file': 'Arquivo',
+      'actions': 'Ações'
     }
   })
 }

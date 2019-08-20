@@ -25,12 +25,18 @@
           <i :class="`el-icon-${activeStatus(scope.item.is_active)}`" :style="`font-size: 30px; color: ${activeColor(scope.item.is_active)};`" />
         </template>
 
+        <template slot="file" slot-scope="scope">
+          <a :href="scope.item.file" target="_blank">
+            <b-button variant="outline-primary" size="sm">Documento</b-button>
+          </a>
+        </template>
+
         <template slot="actions" slot-scope="scope">
-          <router-link :to="{ name: `${endpoint}-edit`, params: { id: scope.item.id } }">
+          <router-link :to="{ name: `${endpoint}-edit`, params: { id: scope.item.pk } }">
             <b-button variant="outline-primary" size="sm">Editar</b-button>
           </router-link>
 
-          <b-button variant="danger" size="sm" @click="displayDialog(scope.item.id)">Remover</b-button>
+          <b-button variant="danger" size="sm" @click="displayDialog(scope.item.pk)">Remover</b-button>
         </template>
       </b-table>
 
@@ -99,14 +105,6 @@ export default {
         .catch(() => {
           this.onLoading = false
         })
-    },
-
-    activeStatus (value) {
-      return value ? 'success' : 'error'
-    },
-
-    activeColor (value) {
-      return value ? '#02BC77' : '#d9534f'
     },
 
     // RECORD DELETION =============================================

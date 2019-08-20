@@ -1,23 +1,23 @@
 <template>
-  <patient-form :patient="patient" @formSumit="update" />
+  <student-form :student="student" @formSumit="update" />
 </template>
 
 <script>
-import PatientForm from './Form.vue'
+import StudentForm from './Form.vue'
 export default {
   components: {
-    PatientForm
+    StudentForm
   },
 
   data: () => ({
-    patient: {}
+    student: {}
   }),
 
   methods: {
     update (data) {
-      this.$http.put(`patients/${data.id}/`, data)
+      this.$http.put(`students/${data.pk}/`, data)
         .then((response) => {
-          this.$router.push({ name: 'patients-list' })
+          this.$router.push({ name: 'students-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -25,19 +25,19 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro no atualização de paciente',
-            message: 'Não foi possível atualizar o paciente.'
+            title: 'Erro no atualização do Estudante',
+            message: 'Não foi possível atualizar o Estudante.'
           })
         })
     }
   },
 
   mounted () {
-    const patientID = this.$route.params.id
+    const studentID = this.$route.params.id
 
-    this.$http.get(`patients/${patientID}/`)
+    this.$http.get(`students/${studentID}/`)
       .then((response) => {
-        this.patient = response.data
+        this.student = response.data
       })
   }
 }

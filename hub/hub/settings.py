@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -64,7 +65,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'corsheaders.middleware.CorsMiddleware', 
 ]
 
 ROOT_URLCONF = 'hub.urls'
@@ -178,6 +178,8 @@ CORS_ALLOW_HEADERS = [
 CORS_ALLOW_METHODS = (
     'GET',
     'POST',
+    'DELETE',
+    'PUT',
 )
 
 

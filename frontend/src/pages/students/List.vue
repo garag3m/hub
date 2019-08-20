@@ -19,7 +19,8 @@ export default {
       'name': 'Nome',
       'registration': 'Matricula',
       'course': 'Curso',
-      'status': 'Situação'
+      'status': 'Situação',
+      'actions': 'Ações'
     }
   })
 }
