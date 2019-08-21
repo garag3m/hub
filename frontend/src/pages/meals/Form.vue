@@ -192,33 +192,7 @@ export default {
 
   data: () => ({
     rules: {
-      name: [
-        { required: true, message: 'Informe o nome', trigger: 'blur' }
-      ],
-      gender: [
-        { required: true, message: 'Informe o sexo do paciente', trigger: 'blur' }
-      ],
-      date_birth: [
-        { required: true, message: 'Informe data de nascimento', trigger: 'blur' }
-      ],
-      cpf: [
-        { required: true, message: 'Informe CPF', trigger: 'blur' },
-        { min: 14, message: 'CPF deve possuir 14 caracteres', trigger: 'blur' }
-      ],
-      rg: [
-        { min: 13, message: 'RG deve possuir 13 digitos', trigger: 'blur' }
-      ],
-      cell_phone: [
-        { min: 14, message: 'Celular deve possuir 14 digitos', trigger: 'blur' }
-      ],
-      cep: [
-        { min: 9, message: 'CEP deve possuir 9 digitos', trigger: 'blur' }
-      ],
-      responsible_cell_phone: [
-        { min: 14, message: 'Telefone do responsável deve possuir 14 digitos', trigger: 'blur' }
-      ]
     },
-    schooling_opts: [],
     civil_status_opts: [
       { value: 'SO', text: 'Solteira(o)' },
       { value: 'CA', text: 'Casada(o)' },

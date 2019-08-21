@@ -15,7 +15,7 @@ export default {
 
   methods: {
     update (data) {
-      this.$http.put(`users/${data.id}/`, data)
+      this.$http.put(`users/${data.pk}/`, data)
         .then((response) => {
           this.$router.push({ name: 'users-list' })
         })
