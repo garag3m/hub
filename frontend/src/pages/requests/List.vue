@@ -21,6 +21,7 @@ export default {
       'formated_date': 'Data',
       'type_name': 'Tipo',
       'status_name': 'Status',
+      'actions': 'Ações',
     }
   })
 }

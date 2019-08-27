@@ -18,7 +18,8 @@ export default {
     columns: {
       'student_name': 'Aluno',
       'formated_date': 'Data',
-      'type_name': 'Tipo'
+      'type_name': 'Tipo',
+      'aprove': 'Aprovar'
     }
   })
 }

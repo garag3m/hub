@@ -38,6 +38,13 @@
 
           <b-button variant="danger" size="sm" @click="displayDialog(scope.item.pk)">Remover</b-button>
         </template>
+        <template slot="aprove" slot-scope="scope">
+          <router-link :to="{ name: `${endpoint}-edit`, params: { id: scope.item.pk } }">
+            <b-button variant="outline-primary" size="sm">Aprovar</b-button>
+          </router-link>
+        </template>
+          
+          
       </b-table>
 
     </div>
