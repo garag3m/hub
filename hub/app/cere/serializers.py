@@ -14,6 +14,11 @@ class  AddressSerializer(serializers.ModelSerializer):
 class CompanySerializer(serializers.ModelSerializer):
     address = AddressSerializer()
 
+    def create(self, validated_data):
+        print(validated_data)
+        
+
+
     class Meta:
         model = models.Company
         fields = ('pk', 'name', 'cnpj', 'address', 'owner', 'agreement_number', 'cpf_owner')

@@ -35,7 +35,6 @@ class CreateRequestSerializer(serializers.ModelSerializer):
         return RequestSerializer(request).data
 
     def update(self, instance, validated_data):
-        print(validated_data)
         students = validated_data.get('student_list').split(',')
         info = model_meta.get_field_info(instance)
         for attr, value in validated_data.items():
