@@ -12,13 +12,13 @@ class Contador(object):
                 return ("%.2f" % left)
 
 #Simple request on suap's API.
-api_request = requests.get('https://suap.ifpb.edu.br/api/ensino/alunos/v1/', auth=HTTPBasicAuth('suap_login', 'suap_password') )
+api_request = requests.get('https://suap.ifpb.edu.br/api/ensino/alunos/v1/', auth=HTTPBasicAuth('20161230008', 'Adr15025') )
 
 #Getting response from 'api_request' as a json file.
 response_init = api_request.json()
 
 #API_ENDPOINT, show us where we are going to post our data responses in this case 'name', 'course', 'status', 'registration'
-API_ENDPOINT = ("http://localhost:8000/api/students/")
+API_ENDPOINT = ("http://10.3.132.163:8000/api/students/")
 
 #pagination varset
 offset = 0
@@ -33,7 +33,7 @@ porcentagem = Contador(bytes)
 for page in range (((response_init["count"])//100)+1):
     
     #Dinamic page request
-    offset_request = requests.get('https://suap.ifpb.edu.br/api/ensino/alunos/v1/?offset={}'.format(offset), auth=HTTPBasicAuth('suap_login', 'suap_password'))
+    offset_request = requests.get('https://suap.ifpb.edu.br/api/ensino/alunos/v1/?offset={}'.format(offset), auth=HTTPBasicAuth('20161230008', 'Adr15025'))
     
     #Response handler
     response = offset_request.json()
@@ -50,7 +50,7 @@ for page in range (((response_init["count"])//100)+1):
                 'registration':student["matricula"]
                 }
 
-            student_post = requests.post(url = API_ENDPOINT, data=data, headers = {'Authorization': 'token access_token_here'}) 
+            student_post = requests.post(url = API_ENDPOINT, data=data, headers = {'Authorization': 'token 78f622aa806ed8fdc69b97017a53549ee3f98275'}) 
 
     offset += 100
     print('Page: ', offset)
