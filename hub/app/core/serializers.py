@@ -1,3 +1,5 @@
+from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
@@ -16,7 +18,7 @@ class UUIDUserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = models.UUIDUser
-        fields = ('pk', 'username', 'first_name', 'token')
+        fields = ('pk', 'username', 'first_name', 'last_name', 'token')
 
 
 # UUIDUser simple serializer
@@ -37,7 +39,7 @@ class UUIDUserCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.UUIDUser
-        fields = ('pk', 'username', 'first_name', 'email', 'password', 'token')
+        fields = ('pk', 'username', 'first_name', 'last_name', 'email', 'password', 'token')
 
 
 # UUIDUser simple serializer

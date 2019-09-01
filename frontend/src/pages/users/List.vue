@@ -19,7 +19,8 @@ export default {
       'username': 'Nome de usuário',
       'first_name': 'Nome',
       'last_name': 'Sobrenome',
-      'email': 'Email'
+      'email': 'Email',
+      'actions': 'Ações',
     }
   })
 }

@@ -8,7 +8,7 @@
 
       <!-- Side container -->
       <!-- Do not display the container on extra small, small and medium screens -->
-      <div class="d-none d-lg-flex col-lg-8 align-items-center ui-bg-cover ui-bg-overlay-container p-5" :style="`background-image: url('${baseUrl}img/logo_hub.png');`">
+      <div class="d-none d-lg-flex col-lg-8 align-items-center ui-bg-cover ui-bg-overlay-container p-5" :style="`background-image: url('${baseUrl}img/logo_hub.png'); height: 49%; margin-top: 10% `">
       <!-- rgb(245, 123, 126) -->
       <!--<div class="ui-bg-overlay opacity-50" style="background-color: rgb(213, 213, 213)"></div>-->
       </div>

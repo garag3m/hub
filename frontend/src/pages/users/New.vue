@@ -1,5 +1,5 @@
 <template>
-  <userform :user="user" @formSumit="create" />
+  <user-form :user="user" @formSumit="create" />
 </template>
 
 <script>
@@ -15,17 +15,14 @@ export default {
       first_name: null,
       last_name: null,
       email: null,
-      password: null
+      password: null,
       }
   }),
 
   methods: {
     create (data) {
-      console.log('hey')
-      console.log(data)
       this.$http.post('users/', data)
         .then((response) => {
-          console.log(response)
           this.$router.push({ name: 'users-list' })
         })
         .catch((error) => {

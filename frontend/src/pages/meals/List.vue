@@ -16,9 +16,10 @@ export default {
 
   data: () => ({
     columns: {
-      'student': 'Aluno',
-      'date': 'Data',
-      'type': 'Tipo'
+      'student_name': 'Aluno',
+      'formated_date': 'Data',
+      'type_name': 'Tipo',
+      'aprove': 'Aprovar'
     }
   })
 }

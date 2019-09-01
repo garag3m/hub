@@ -14,6 +14,7 @@ class Contador(object):
 #Simple request on suap's API.
 api_request = requests.get('https://suap.ifpb.edu.br/api/ensino/alunos/v1/', auth=HTTPBasicAuth('20161230008', 'Adr15025') )
 
+print(api_request.json())
 #Getting response from 'api_request' as a json file.
 response_init = api_request.json()
 
@@ -25,7 +26,7 @@ offset = 0
 
 #Post count
 student_count = 0
-
+print(response_init["count"])
 bytes = ((response_init["count"]))
 
 porcentagem = Contador(bytes)
@@ -50,7 +51,11 @@ for page in range (((response_init["count"])//100)+1):
                 'registration':student["matricula"]
                 }
 
+<<<<<<< HEAD
             student_post = requests.post(url = API_ENDPOINT, data=data, headers = {'Authorization': 'token 78f622aa806ed8fdc69b97017a53549ee3f98275'}) 
+=======
+            student_post = requests.post(url = API_ENDPOINT, data=data, headers = {'Authorization': 'Token 11669ea2931bb635ed086869cd3c3c621e760c62'}) 
+>>>>>>> 57d747d39991f8c173d213bc0ce6e9064f0e61c3
 
     offset += 100
     print('Page: ', offset)

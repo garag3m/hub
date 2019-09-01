@@ -16,7 +16,7 @@ export default {
 
   data: () => ({
     columns: {
-      'company': 'Empresa',
+      'company_name': 'Empresa',
       'advisor': 'Orientador',
       'supervisor': 'Supervisor',
       'sector': 'Setor'

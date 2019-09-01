@@ -16,12 +16,12 @@ export default {
 
   data: () => ({
     columns: {
-      'date': 'Data',
-      'type': 'Tipo',
-      'status': 'Estado',
-      'justification_teacher': 'Descrição',
-      'teacher': 'Professor',
-      'students': 'Alunos'
+      'students_amount': 'Alunos',
+      'teacher_name': 'Professor',
+      'formated_date': 'Data',
+      'type_name': 'Tipo',
+      'status_name': 'Status',
+      'actions': 'Ações',
     }
   })
 }

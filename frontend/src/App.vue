@@ -15,7 +15,7 @@
 export default {
   name: 'app',
   metaInfo: {
-    title: 'Pró mulher'
+    title: 'Hub'
   },
   updated () {
     // Remove loading state
