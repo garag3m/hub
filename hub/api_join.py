@@ -19,7 +19,7 @@ print(api_request.json())
 response_init = api_request.json()
 
 #API_ENDPOINT, show us where we are going to post our data responses in this case 'name', 'course', 'status', 'registration'
-API_ENDPOINT = ("http://localhost:8000/api/students/")
+API_ENDPOINT = ("http://10.3.132.163:8000/api/students/")
 
 #pagination varset
 offset = 0

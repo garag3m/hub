@@ -1,6 +1,7 @@
 from django.db import models
 
 from app.core import models as core
+from app.edu import models as edu
 
 # Create your models here.
 
@@ -90,7 +91,7 @@ class Stage(core.CreateUpdateModel):
     ends=models.CharField(max_length=20, verbose_name='Hora final')
     document_secure= models.CharField(max_length=20, verbose_name='Seguro')
     support= models.IntegerField(choices= SUPPORT, verbose_name='auxílio')
-
+    student = models.ForeignKey(edu.Student, on_delete=models.CASCADE, verbose_name='Estudante')
 
     @property
     def company_name(self):
