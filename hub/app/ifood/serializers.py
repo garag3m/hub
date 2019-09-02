@@ -17,7 +17,7 @@ class RequestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Request
-        fields = ('students_amount', 'teacher_name', 'type_name', 'status_name', 'formated_date', 'pk', 'teacher', 'type', 'status', 'date', 'justification_teacher')
+        fields = ('students_amount', 'teacher_name', 'type_name', 'status_name', 'formated_date', 'pk', 'teacher', 'type', 'status', 'date', 'justification_teacher', 'students_string')
 
 
 class CreateRequestSerializer(serializers.ModelSerializer):
@@ -35,7 +35,6 @@ class CreateRequestSerializer(serializers.ModelSerializer):
         return RequestSerializer(request).data
 
     def update(self, instance, validated_data):
-        print(validated_data)
         students = validated_data.get('student_list').split(',')
         info = model_meta.get_field_info(instance)
         for attr, value in validated_data.items():
@@ -58,4 +57,4 @@ class StudentMealSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.StudentMeal
-        fields = ('student_name' ,'formated_date', 'type_name')
+        fields = ('student_name' ,'formated_date', 'type_name', 'attendance', 'pk')

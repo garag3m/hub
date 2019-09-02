@@ -38,13 +38,13 @@
 
           <b-button variant="danger" size="sm" @click="displayDialog(scope.item.pk)">Remover</b-button>
         </template>
-        <template slot="aprove" slot-scope="scope">
-          <router-link :to="{ name: `${endpoint}-edit`, params: { id: scope.item.pk } }">
-            <b-button variant="outline-primary" size="sm">Aprovar</b-button>
-          </router-link>
+
+        <template slot="presence" slot-scope="scope">
+          <b-button variant="success" size="sm" v-if="scope.item.attendance===null" @click="mealUpdate(scope.item.pk)">Conceder presença</b-button>
+          <p v-else-if="scope.item.attendance===1">Presente</p>
+          <p v-else-if="scope.item.attendance===2">Ausência</p>
         </template>
-          
-          
+        
       </b-table>
 
     </div>
@@ -111,6 +111,23 @@ export default {
         })  
         .catch(() => {
           this.onLoading = false
+        })
+    },
+    mealUpdate (id) {
+      console.log(id)
+      this.$http.patch(`meals/${id}/`, { attendance: 1 })
+        .then((response) => {
+          this.$router.push({ name: 'meals-list' })
+        })
+        .catch((error) => {
+          if (error.response.status === 401) {
+            localStorage.removeItem('jwt')
+            this.$router.push({ name: 'login' })
+          }
+          this.$notify.error({
+            title: 'Erro ao conceder presença',
+            message: 'Não foi possível conceder presença.'
+          })
         })
     },
 

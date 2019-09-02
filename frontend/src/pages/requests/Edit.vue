@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import RequestForm from './Form.vue'
+import RequestForm from './FormEdit.vue'
 export default {
   components: {
     RequestForm
@@ -25,7 +25,7 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro no atualização do pedido',
+            title: 'Erro na atualização do pedido',
             message: 'Não foi possível atualizar o pedido.'
           })
         })
@@ -37,7 +37,6 @@ export default {
 
     this.$http.get(`requests/${requestID}/`)
       .then((response) => {
-        console.log(response.data)
         this.request = response.data
       })
   }

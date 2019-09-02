@@ -27,6 +27,13 @@ class Request(core.CreateUpdateModel):
     evaluator = models.ForeignKey(core.UUIDUser, on_delete=models.CASCADE, verbose_name='Avaliador', related_name='request_evaluator', blank=True, null=True)
     
     @property
+    def students_string(self):
+        string = ''
+        for student in self.students.all():
+            string+= str(student.pk) + ','
+        return string
+
+    @property
     def students_amount(self):
         return len(self.students.all())
 
@@ -78,7 +85,7 @@ class StudentMeal(core.CreateUpdateModel):
     student = models.ForeignKey(edu.Student, on_delete=models.CASCADE, related_name='refeição')
     date = models.DateField()
     type = models.IntegerField(choices=TYPE, verbose_name='Tipo de refeição')
-    attendance = models.IntegerField(choices=STATUS, verbose_name='Status de presença', null=True)
+    attendance = models.IntegerField(choices=STATUS, verbose_name='Status de presença', null=True, blank=True)
 
     @property
     def student_name(self):
