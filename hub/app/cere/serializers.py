@@ -12,12 +12,24 @@ class  AddressSerializer(serializers.ModelSerializer):
 # Company serializer
 # - - - - - - - - - - - - - - - - - - -
 class CompanySerializer(serializers.ModelSerializer):
+
+    pk = serializers.UUIDField(read_only=True)
     address = AddressSerializer()
 
     def create(self, validated_data):
-        print(validated_data)
-        
+        address = models.Address()
+        company_address = validated_data.pop('address')
+        address.city = company_address['city']
+        address.neighborhood= company_address['neighborhood']
+        address.street= company_address['street']
+        address.number= company_address['number']
+        address.cep= company_address['cep']
+        address.state= company_address['state']
+        address.save()
+        validated_data['address'] = address
+        company = models.Company.objects.create(**validated_data)
 
+        return CompanySerializer(company).data
 
     class Meta:
         model = models.Company

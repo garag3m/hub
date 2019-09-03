@@ -1,23 +1,23 @@
 <template>
-  <patient-form :patient="patient" @formSumit="update" />
+  <company-form :company="company" @formSumit="update" />
 </template>
 
 <script>
-import PatientForm from './Form.vue'
+import CompanyForm from './Form.vue'
 export default {
   components: {
-    PatientForm
+    CompanyForm
   },
 
   data: () => ({
-    patient: {}
+    company: {}
   }),
 
   methods: {
     update (data) {
-      this.$http.put(`patients/${data.id}/`, data)
+      this.$http.put(`companys/${data.id}/`, data)
         .then((response) => {
-          this.$router.push({ name: 'patients-list' })
+          this.$router.push({ name: 'companys-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -25,19 +25,19 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro no atualização de paciente',
-            message: 'Não foi possível atualizar o paciente.'
+            title: 'Erro na atualização da empresa',
+            message: 'Não foi possível atualizar a empresa.'
           })
         })
     }
   },
 
   mounted () {
-    const patientID = this.$route.params.id
+    const companyID = this.$route.params.id
 
-    this.$http.get(`patients/${patientID}/`)
+    this.$http.get(`companys/${companyID}/`)
       .then((response) => {
-        this.patient = response.data
+        this.comapny = response.data
       })
   }
 }

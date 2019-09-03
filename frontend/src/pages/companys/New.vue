@@ -1,55 +1,37 @@
 <template>
-  <patient-form :patient="patient" @formSumit="create" />
+  <company-form :company="company" @formSumit="create" />
 </template>
 
 <script>
-import PatientForm from './Form.vue'
+import CompanyForm from './Form.vue'
 export default {
   components: {
-    PatientForm
+    CompanyForm
   },
 
   data: () => ({
-    patient: {
-      name: null,
-      gender: null,
-      date_birth: null,
-      address: null,
-      color: null,
-      civil_status: null,
-      cpf: null,
-      rg: null,
-      rg_emitter: null,
-      cns_sus: null,
-      naturalness: null,
-      nationality: null,
-      mother: null,
-      father: null,
-      number_address: null,
-      complete_address: null,
-      cell_phone: null,
-      whastapp: null,
-      facebook: null,
-      instagram: null,
-      email: null,
-      profession: null,
-      responsible_name: null,
-      responsible_cell_phone: null,
-      schooling: null,
-      forwarded_by: null,
-      observation: null,
-      age_menstruation: null,
-      age_gestation: null,
-      age_menopause: null,
-      is_active: true
+    company: {
+       name: null,
+        cnpj: null,
+        owner: null,
+        agreement_number: null,
+        cpf_owner: null,
+        address:{
+          city: null,
+          neighborhood: null,
+          street: null,
+          number: null,
+          cep: null,
+          state: null
+        }
     }
   }),
 
   methods: {
     create (data) {
-      this.$http.post('students/', data)
+      this.$http.post('companys/', data)
         .then((response) => {
-          this.$router.push({ name: 'students-list' })
+          this.$router.push({ name: 'companys-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -57,8 +39,8 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro no cadastro de paciente',
-            message: 'Não foi possível cadastrar o paciente.'
+            title: 'Erro no cadastro da empresa',
+            message: 'Não foi possível cadastrar a empresa.'
           })
         })
     }
