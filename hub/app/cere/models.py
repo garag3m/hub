@@ -97,6 +97,13 @@ class Stage(core.CreateUpdateModel):
     def company_name(self):
         return self.company.name
 
+    @property
+    def support_label(self):
+        if self.support == 1:
+            return 'Não'
+        elif self.support == 2:
+            return ''
+
     class Meta:
         verbose_name= 'Estágio'
         verbose_name_plural='Estágios'
