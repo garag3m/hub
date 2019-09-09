@@ -1,23 +1,23 @@
 <template>
-  <patient-form :patient="patient" @formSumit="update" />
+  <document-opinion-form :document_opinion="document_opinion" @formSumit="update" />
 </template>
 
 <script>
-import PatientForm from './Form.vue'
+import DocumentOpinionForm from './Form.vue'
 export default {
   components: {
-    PatientForm
+    DocumentOpinionForm
   },
 
   data: () => ({
-    patient: {}
+    document_opinion: {}
   }),
 
   methods: {
     update (data) {
-      this.$http.put(`patients/${data.id}/`, data)
+      this.$http.put(`document-opinions/${data.pk}/`, data)
         .then((response) => {
-          this.$router.push({ name: 'patients-list' })
+          this.$router.push({ name: 'document-opinions-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -25,19 +25,19 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro no atualização de paciente',
-            message: 'Não foi possível atualizar o paciente.'
+            title: 'Erro na atualização do parecer',
+            message: 'Não foi possível atualizar o parecer.'
           })
         })
     }
   },
 
   mounted () {
-    const patientID = this.$route.params.id
+    const document_opinionID = this.$route.params.id
 
-    this.$http.get(`patients/${patientID}/`)
+    this.$http.get(`document-opinions/${document_opinionID}/`)
       .then((response) => {
-        this.patient = response.data
+        this.document_opinion = response.data
       })
   }
 }

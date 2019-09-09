@@ -20,6 +20,7 @@ export default {
       'process_number': 'Nº de processo',
       'formated_date': 'Data',
       'status_name': 'Status',
+      'actions': 'Ações',
     }
   })
 }

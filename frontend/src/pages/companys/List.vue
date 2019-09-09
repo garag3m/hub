@@ -18,7 +18,8 @@ export default {
     columns: {
       'name': 'Nome',
       'owner': 'Proprietário',
-      'cnpj': 'CNPJ'
+      'cnpj': 'CNPJ',
+      'actions': 'Ações',
     }
   })
 }

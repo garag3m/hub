@@ -19,7 +19,8 @@ export default {
       'company_name': 'Empresa',
       'advisor': 'Orientador',
       'supervisor': 'Supervisor',
-      'sector': 'Setor'
+      'sector': 'Setor',
+      'actions': 'Ações',
     }
   })
 }
