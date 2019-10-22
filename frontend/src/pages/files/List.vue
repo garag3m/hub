@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ElementTable from '@/components/ElementTable.vue'
+import ElementTable from '@/components/ElementTable2.vue'
 
 export default {
   components: {
