@@ -12,7 +12,7 @@ class Contador(object):
                 return ("%.2f" % left)
 
 #Simple request on suap's API.
-api_request = requests.get('https://suap.ifpb.edu.br/api/ensino/alunos/v1/', auth=HTTPBasicAuth('20161230008', 'Adr15025') )
+api_request = requests.get('https://suap.ifpb.edu.br/api/ensino/alunos/v1/', auth=HTTPBasicAuth('Matricula', 'Senha') )
 
 print(api_request.json())
 #Getting response from 'api_request' as a json file.
@@ -34,7 +34,7 @@ porcentagem = Contador(bytes)
 for page in range (((response_init["count"])//100)+1):
     
     #Dinamic page request
-    offset_request = requests.get('https://suap.ifpb.edu.br/api/ensino/alunos/v1/?offset={}'.format(offset), auth=HTTPBasicAuth('20161230008', 'Adr15025'))
+    offset_request = requests.get('https://suap.ifpb.edu.br/api/ensino/alunos/v1/?offset={}'.format(offset), auth=HTTPBasicAuth('Matricula', 'Senha'))
     
     #Response handler
     response = offset_request.json()
