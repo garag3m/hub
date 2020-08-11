@@ -30,7 +30,7 @@ class Request(core.CreateUpdateModel):
     def students_string(self):
         string = ''
         for student in self.students.all():
-            string+= str(student.pk) + ','
+            string += str(student.pk) + ','
         return string
 
     @property
@@ -68,6 +68,7 @@ class Request(core.CreateUpdateModel):
     class Meta:
         verbose_name = 'pedido'
         verbose_name_plural = 'pedidos'
+
 
 class StudentMeal(core.CreateUpdateModel):
 

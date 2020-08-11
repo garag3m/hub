@@ -1,11 +1,12 @@
 from rest_framework import serializers
 
 from . import models
+from app.core import models as core
 
 class  AddressSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = models.Address
+        model = core.Address
         fields = ('pk','city', 'neighborhood', 'street', 'number', 'cep', 'state')
 
         
