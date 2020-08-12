@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 
-ivesfg1 token: 3eb4419845f3a78d84ac6e1f2dc79642eba394a3
 """
 
 import os
