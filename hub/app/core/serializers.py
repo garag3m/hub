@@ -6,6 +6,26 @@ from rest_framework.authtoken.models import Token
 from . import models
 
 
+# Address serializer
+# - - - - - - - - - - - - - - - - - - -
+class AddressSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Address
+        fields = (
+            'pk',
+            'city',
+            'neighborhood',
+            'street',
+            'number',
+            'cep',
+            'state',
+            'country',
+            'name',
+            'type'
+        )
+
+
 # UUIDUser serializer
 # - - - - - - - - - - - - - - - - - - -
 class UUIDUserSerializer(serializers.HyperlinkedModelSerializer):
@@ -48,4 +68,4 @@ class UUIDUserSimpleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.UUIDUser
-        fields = ('pk', 'username', 'first_name', 'last_name', 'email')
+        fields = ('pk', 'username', 'first_name', 'last_name', 'email', 'address')

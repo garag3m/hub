@@ -12,6 +12,11 @@ from . import models, serializers
 from .permissions import IsCreationOrIsAuthenticated
 
 
+class AddressViewSet(viewsets.ModelViewSet):
+    queryset = models.Address.objects.all()
+    serializer_class = serializers.AddressSerializer
+
+
 # UUIDUser viewset
 # - - - - - - - - - - - - - - - - - - -
 class UUIDUserViewSet(viewsets.ModelViewSet):

@@ -9,7 +9,7 @@ class Company(core.CreateUpdateModel):
     cnpj = models.CharField(max_length=17, verbose_name='CNPJ')
     address = models.ForeignKey(core.Address, on_delete=models.CASCADE, null=True, verbose_name='Endereço')
     owner = models.CharField(max_length=100, verbose_name='Proprietário')
-    agreement_number = models.IntegerField(blank=True, verbose_name='Número do convênio')
+    agreement_number = models.IntegerField(blank=True, null=True, verbose_name='Número do convênio')
     cpf_owner = models.CharField(max_length=14, verbose_name='CPF do proprietário')
 
     def __str__(self):

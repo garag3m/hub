@@ -24,6 +24,7 @@ from app.edu import views as edu
 from app.ifood import views as ifood
 from app.cere import views as cere
 from app.ctrl_p import views as ctrl_p
+from app.lattes import views as lattes
 
 router = routers.DefaultRouter()
 
@@ -33,11 +34,24 @@ router.register(r'meals', ifood.StudentMealViewSet, base_name='api-meal')
 router.register(r'requests', ifood.RequestViewSet, base_name='api-request')
 router.register(r'companys', cere.CompanyViewSet, base_name='api-company')
 router.register(r'document-opinions', cere.Document_opinionViewSet, base_name='api-document_opinion')
-router.register(r'addresses', cere.AddressViewSet, base_name='api-address')
+router.register(r'address', core.AddressViewSet, base_name='api-address')
 router.register(r'stages', cere.StageViewSet, base_name='api-stage')
 router.register(r'files', ctrl_p.FileViewSet, base_name='api-files')
 
-
+router.register(r'lattes/institute', lattes.InstituteViewSet, base_name='api-institutes')
+router.register(r'lattes/academic-education', lattes.AcademicEducationViewSet, base_name='api-academic-education')
+router.register(r'lattes/complementary-education', lattes.ComplementaryEducationViewSet,
+                base_name='api-complementary-education')
+router.register(r'lattes/task', lattes.TaskViewSet, base_name='api-task')
+router.register(r'lattes/professional-performance', lattes.ProfessionalPerformanceViewSet,
+                base_name='api-professional-performance')
+router.register(r'lattes/teaching-projects', lattes.TeachingProjectsViewSet, base_name='api-teaching-projects')
+router.register(r'lattes/languages', lattes.LanguageViewSet, base_name='api-languages')
+router.register(r'lattes/awards', lattes.AwardsViewSet, base_name='api-awards')
+router.register(r'lattes/productions', lattes.ProductionsViewSet, base_name='api-productions')
+router.register(r'lattes/events', lattes.EventsViewSet, base_name='api-events')
+router.register(r'lattes/ct', lattes.CTViewSet, base_name='api-ct')
+router.register(r'lattes/person', lattes.PersonViewSet, base_name='api-person')
 
 
 urlpatterns = [
@@ -47,4 +61,4 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-  urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

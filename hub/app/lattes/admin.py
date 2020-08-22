@@ -3,8 +3,8 @@ from django.contrib import admin
 from .models import *
 
 
-@admin.register(Pessoa)
-class PessoaAdmin(admin.ModelAdmin):
+@admin.register(Person)
+class PersonAdmin(admin.ModelAdmin):
     list_display = ('id_lattes',)
 
 
@@ -38,28 +38,13 @@ class PTeachingProjectsAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(OccupationArea)
-class OccupationAreaAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(Languages)
-class LanguagesAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(UserLanguage)
-class UserLanguageAdmin(admin.ModelAdmin):
+@admin.register(Language)
+class LanguageAdmin(admin.ModelAdmin):
     pass
 
 
 @admin.register(Awards)
 class AwardAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(References)
-class ReferenceAdmin(admin.ModelAdmin):
     pass
 
 
