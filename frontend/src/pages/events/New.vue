@@ -1,30 +1,27 @@
 <template>
-  <user-form :user="user" @formSumit="create" />
+  <events-form :events="events" @formSumit="create" />
 </template>
 
 <script>
-import UserForm from './Form.vue'
+import EventsForm from './Form.vue'
 export default {
   components: {
-    UserForm
+    EventsForm
   },
 
   data: () => ({
-    user: {
-      username: null,
-      first_name: null,
-      last_name: null,
-      email: null,
-      password: null,
-      address: null
+    events: {
+        type: null,
+        header: null,
+        reference: null,
       }
   }),
 
   methods: {
     create (data) {
-      this.$http.post('users/', data)
+      this.$http.post('lattes/events/', data)
         .then((response) => {
-          this.$router.push({ name: 'users-list' })
+          this.$router.push({ name: 'lattes/events-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -32,8 +29,8 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro no cadastro de paciente',
-            message: 'Não foi possível cadastrar o paciente.'
+            title: 'Erro no cadastro do currículo',
+            message: 'Não foi possível cadastrar o currículo.'
           })
         })
     }

@@ -1,30 +1,26 @@
 <template>
-  <user-form :user="user" @formSumit="create" />
+  <awards-form :awards="awards" @formSumit="create" />
 </template>
 
 <script>
-import UserForm from './Form.vue'
+import AwardsForm from './Form.vue'
 export default {
   components: {
-    UserForm
+    AwardsForm
   },
 
   data: () => ({
-    user: {
-      username: null,
-      first_name: null,
-      last_name: null,
-      email: null,
-      password: null,
-      address: null
+    awards: {
+        year: null,
+        award_name: null
       }
   }),
 
   methods: {
     create (data) {
-      this.$http.post('users/', data)
+      this.$http.post('lattes/awards/', data)
         .then((response) => {
-          this.$router.push({ name: 'users-list' })
+          this.$router.push({ name: 'lattes/awards-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -32,8 +28,8 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro no cadastro de paciente',
-            message: 'Não foi possível cadastrar o paciente.'
+            title: 'Erro no cadastro do currículo',
+            message: 'Não foi possível cadastrar o currículo.'
           })
         })
     }

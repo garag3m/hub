@@ -1,30 +1,27 @@
 <template>
-  <user-form :user="user" @formSumit="create" />
+  <productions-form :productions="productions" @formSumit="create" />
 </template>
 
 <script>
-import UserForm from './Form.vue'
+import ProductionsForm from './Form.vue'
 export default {
   components: {
-    UserForm
+    ProductionsForm
   },
 
   data: () => ({
-    user: {
-      username: null,
-      first_name: null,
-      last_name: null,
-      email: null,
-      password: null,
-      address: null
+    productions: {
+        type: null,
+        header: null,
+        reference: null,
       }
   }),
 
   methods: {
     create (data) {
-      this.$http.post('users/', data)
+      this.$http.post('lattes/productions/', data)
         .then((response) => {
-          this.$router.push({ name: 'users-list' })
+          this.$router.push({ name: 'lattes/productions-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -32,8 +29,8 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro no cadastro de paciente',
-            message: 'Não foi possível cadastrar o paciente.'
+            title: 'Erro no cadastro do currículo',
+            message: 'Não foi possível cadastrar o currículo.'
           })
         })
     }

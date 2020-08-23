@@ -1,30 +1,27 @@
 <template>
-  <user-form :user="user" @formSumit="create" />
+  <institute-form :institute="institute" @formSumit="create" />
 </template>
 
 <script>
-import UserForm from './Form.vue'
+import InstituteForm from './Form.vue'
 export default {
   components: {
-    UserForm
+    InstituteForm
   },
 
   data: () => ({
-    user: {
-      username: null,
-      first_name: null,
-      last_name: null,
-      email: null,
-      password: null,
-      address: null
+    institute: {
+        name: null,
+        url_homepage: null,
+        address: null
       }
   }),
 
   methods: {
     create (data) {
-      this.$http.post('users/', data)
+      this.$http.post('lattes/institute/', data)
         .then((response) => {
-          this.$router.push({ name: 'users-list' })
+          this.$router.push({ name: 'lattes/institute-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -32,8 +29,8 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro no cadastro de paciente',
-            message: 'Não foi possível cadastrar o paciente.'
+            title: 'Erro no cadastro do currículo',
+            message: 'Não foi possível cadastrar o currículo.'
           })
         })
     }

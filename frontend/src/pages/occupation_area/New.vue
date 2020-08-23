@@ -1,30 +1,25 @@
 <template>
-  <user-form :user="user" @formSumit="create" />
+  <occupation-area-form :occupation_area="occupation_area" @formSumit="create" />
 </template>
 
 <script>
-import UserForm from './Form.vue'
+import OccupationAreaForm from './Form.vue'
 export default {
   components: {
-    UserForm
+    OccupationAreaForm
   },
 
   data: () => ({
-    user: {
-      username: null,
-      first_name: null,
-      last_name: null,
-      email: null,
-      password: null,
-      address: null
+    occupation_area: {
+        area: null
       }
   }),
 
   methods: {
     create (data) {
-      this.$http.post('users/', data)
+      this.$http.post('lattes/occupation-area/', data)
         .then((response) => {
-          this.$router.push({ name: 'users-list' })
+          this.$router.push({ name: 'lattes/occupation-area-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -32,8 +27,8 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro no cadastro de paciente',
-            message: 'Não foi possível cadastrar o paciente.'
+            title: 'Erro no cadastro do currículo',
+            message: 'Não foi possível cadastrar o currículo.'
           })
         })
     }

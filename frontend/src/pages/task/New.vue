@@ -1,30 +1,29 @@
 <template>
-  <user-form :user="user" @formSumit="create" />
+  <task-form :task="task" @formSumit="create" />
 </template>
 
 <script>
-import UserForm from './Form.vue'
+import TaskForm from './Form.vue'
 export default {
   components: {
-    UserForm
+    TaskForm
   },
 
   data: () => ({
-    user: {
-      username: null,
-      first_name: null,
-      last_name: null,
-      email: null,
-      password: null,
-      address: null
+    task: {
+        start_date: null,
+        conclusion_date: null,
+        title: null,
+        about: null,
+        // file: null
       }
   }),
 
   methods: {
     create (data) {
-      this.$http.post('users/', data)
+      this.$http.post('lattes/task/', data)
         .then((response) => {
-          this.$router.push({ name: 'users-list' })
+          this.$router.push({ name: 'lattes/task-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -32,8 +31,8 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro no cadastro de paciente',
-            message: 'Não foi possível cadastrar o paciente.'
+            title: 'Erro no cadastro do currículo',
+            message: 'Não foi possível cadastrar o currículo.'
           })
         })
     }

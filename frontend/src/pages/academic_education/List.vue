@@ -1,7 +1,7 @@
 <template>
   <b-card no-body>
     <element-table
-      :endpoint="'companys'"
+      :endpoint="'lattes/academic-education'"
       :columns="columns" /> 
   </b-card>
 </template>
@@ -16,14 +16,16 @@ export default {
 
   data: () => ({
     columns: {
-      'name': 'Nome',
-      'owner': 'Proprietário',
-      'cnpj': 'CNPJ',
-      'address': 'Endereço',
-      'actions': 'Ações',
+      'start_date': 'Data de Início',
+      'get_conclusion_date': 'Data de Conclusão',
+      'graduation_choice': 'Nível',
+      'graduation': 'Graduação',
+      'get_institution': 'Instituição',
+      'actions': 'Ações'
     }
   })
 }
+
 </script>
 
 <style>

@@ -1,23 +1,23 @@
 <template>
-  <company-form :company="company" @formSumit="update" />
+  <address-form :address="address" @formSumit="update" />
 </template>
 
 <script>
-import CompanyForm from './Form.vue'
+import AddressForm from './Form.vue'
 export default {
   components: {
-    CompanyForm
+    AddressForm
   },
 
   data: () => ({
-    company: {}
+    address: {}
   }),
 
   methods: {
     update (data) {
-      this.$http.put(`companys/${data.id}/`, data)
+      this.$http.put(`address/${data.pk}/`, data)
         .then((response) => {
-          this.$router.push({ name: 'companys-list' })
+          this.$router.push({ name: 'address-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -25,19 +25,19 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro na atualização da empresa',
-            message: 'Não foi possível atualizar a empresa.'
+            title: 'Erro na atualização do pedido',
+            message: 'Não foi possível atualizar o pedido.'
           })
         })
     }
   },
 
   mounted () {
-    const companyID = this.$route.params.id
+    const addressID = this.$route.params.id
 
-    this.$http.get(`companys/${companyID}/`)
+    this.$http.get(`address/${addressID}/`)
       .then((response) => {
-        this.company = response.data
+        this.address = response.data
       })
   }
 }

@@ -16,27 +16,55 @@
 
     <!-- Inner -->
     <div class="sidenav-inner" :class="{ 'py-1': orientation !== 'horizontal' }">
-      <sidenav-router-link icon="ion ion-md-home" to="/" :exact="true">Home</sidenav-router-link>
-      <sidenav-router-link icon="ion ion-md-people" :to="{ name: 'users-list' }" :exact="true">Usuários</sidenav-router-link>
+    <sidenav-router-link icon="ion ion-md-home" to="/" :exact="true">Home</sidenav-router-link>
+
+      <sidenav-menu icon="ion ion-md-people" :active="isMenuActive('/aux')" :open="isMenuOpen('/aux')">
+      <template slot="link-text">CORE</template>
+        <sidenav-router-link icon="ion ion-md-people" :to="{ name: 'users-list' }" :exact="true">Usuários</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-leaf" :to="{ name: 'address-list' }" :exact="true">Endereços</sidenav-router-link>
+      </sidenav-menu>
+
       <sidenav-menu icon="ion ion-ios-school" :active="isMenuActive('/aux')" :open="isMenuOpen('/aux')">
         <template slot="link-text">EDU</template>
         <sidenav-router-link icon="ion ion-md-person" :to="{ name: 'students-list' }" :exact="true">Alunos</sidenav-router-link>
       </sidenav-menu>
+
       <sidenav-menu icon="ion ion-md-pizza" :active="isMenuActive('/aux')" :open="isMenuOpen('/aux')">
         <template slot="link-text">IFOOD</template>
         <sidenav-router-link icon="ion ion-md-paper" :to="{ name: 'requests-list' }" :exact="true">Pedidos</sidenav-router-link>
         <sidenav-router-link icon="ion ion-md-restaurant" :to="{ name: 'meals-list' }" :exact="true">Refeição</sidenav-router-link>
       </sidenav-menu>
+
       <sidenav-menu icon="ion ion-ios-document" :active="isMenuActive('/aux')" :open="isMenuOpen('/aux')">
         <template slot="link-text">CERE</template>
         <sidenav-router-link icon="ion ion-md-clipboard" :to="{ name: 'companys-list' }" :exact="true">Empresas</sidenav-router-link>
         <sidenav-router-link icon="ion ion-md-briefcase" :to="{ name: 'stages-list' }" :exact="true">Estágios</sidenav-router-link>
         <sidenav-router-link icon="ion ion-md-contacts" :to="{ name: 'document-opinions-list' }" :exact="true">Pareceres</sidenav-router-link>
       </sidenav-menu>
+
       <sidenav-menu icon="ion ion-ios-print" :active="isMenuActive('/aux')" :open="isMenuOpen('/aux')">
         <template slot="link-text">CTRL_P</template>
         <sidenav-router-link icon="ion ion-md-document" :to="{ name: 'files-list' }" :exact="true">Documento</sidenav-router-link>
       </sidenav-menu>
+
+      <sidenav-menu icon="ion ion-md-attach" :active="isMenuActive('/aux')" :open="isMenuOpen('/aux')">
+        
+        <template slot="link-text">LATTES</template>
+
+        <sidenav-router-link icon="ion ion-md-finger-print" :to="{ name: 'lattes/person-list' }" :exact="true">Currículos</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-home" :to="{ name: 'lattes/institute-list' }" :exact="true">Instituições</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-book" :to="{ name: 'lattes/academic-education-list' }" :exact="true">Formação Acadêmica/Titulação</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-book" :to="{ name: 'lattes/complementary-education-list' }" :exact="true">Formação Complementar</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-paper" :to="{ name: 'lattes/task-list' }" :exact="true">Atividades</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-man" :to="{ name: 'lattes/professional-performance-list' }" :exact="true">Atuação Profissional</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-hand" :to="{ name: 'lattes/teaching-projects-list' }" :exact="true">Projetos de Ensino</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-planet" :to="{ name: 'lattes/languages-list' }" :exact="true">Languages</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-trophy" :to="{ name: 'lattes/awards-list' }" :exact="true">Awards</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-create" :to="{ name: 'lattes/productions-list' }" :exact="true">Productions</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-calendar" :to="{ name: 'lattes/events-list' }" :exact="true">Events</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-attach" :to="{ name: 'lattes/ct-list' }" :exact="true">CT</sidenav-router-link>
+      </sidenav-menu>
+
     </div>
   </sidenav>
 </template>

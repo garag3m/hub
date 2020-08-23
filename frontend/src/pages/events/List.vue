@@ -1,8 +1,8 @@
 <template>
   <b-card no-body>
     <element-table
-      :endpoint="'users'"
-      :columns="columns" />
+      :endpoint="'lattes/events'"
+      :columns="columns" /> 
   </b-card>
 </template>
 
@@ -16,15 +16,14 @@ export default {
 
   data: () => ({
     columns: {
-      'username': 'Nome de usuário',
-      'first_name': 'Nome',
-      'last_name': 'Sobrenome',
-      'email': 'Email',
-      'address': 'Endereço',
-      'actions': 'Ações',
+      'choice_choice': 'Meu Papel no Evento',
+      'type_choice': 'Tipo de Evento',
+      'name': 'Nome do Evento',
+      'actions': 'Ações'
     }
   })
 }
+
 </script>
 
 <style>

@@ -1,23 +1,23 @@
 <template>
-  <company-form :company="company" @formSumit="update" />
+  <person-form :person="person" @formSumit="update" />
 </template>
 
 <script>
-import CompanyForm from './Form.vue'
+import PersonForm from './Form.vue'
 export default {
   components: {
-    CompanyForm
+    PersonForm
   },
 
   data: () => ({
-    company: {}
+    person: {}
   }),
 
   methods: {
     update (data) {
-      this.$http.put(`companys/${data.id}/`, data)
+      this.$http.put(`lattes/person/${data.pk}/`, data)
         .then((response) => {
-          this.$router.push({ name: 'companys-list' })
+          this.$router.push({ name: 'lattes/person-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -25,19 +25,19 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro na atualização da empresa',
-            message: 'Não foi possível atualizar a empresa.'
+            title: 'Erro na atualização de Instituição',
+            message: 'Não foi possível atualizar a Instituição.'
           })
         })
     }
   },
 
   mounted () {
-    const companyID = this.$route.params.id
+    const personID = this.$route.params.id
 
-    this.$http.get(`companys/${companyID}/`)
+    this.$http.get(`lattes/person/${personID}/`)
       .then((response) => {
-        this.company = response.data
+        this.person = response.data
       })
   }
 }

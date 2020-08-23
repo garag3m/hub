@@ -1,23 +1,23 @@
 <template>
-  <company-form :company="company" @formSumit="update" />
+  <task-form :task="task" @formSumit="update" />
 </template>
 
 <script>
-import CompanyForm from './Form.vue'
+import TaskForm from './Form.vue'
 export default {
   components: {
-    CompanyForm
+    TaskForm
   },
 
   data: () => ({
-    company: {}
+    task: {}
   }),
 
   methods: {
     update (data) {
-      this.$http.put(`companys/${data.id}/`, data)
+      this.$http.put(`lattes/task/${data.pk}/`, data)
         .then((response) => {
-          this.$router.push({ name: 'companys-list' })
+          this.$router.push({ name: 'lattes/task-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -25,19 +25,19 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro na atualização da empresa',
-            message: 'Não foi possível atualizar a empresa.'
+            title: 'Erro na atualização de Formação Complementar',
+            message: 'Não foi possível atualizar a Formação Complementar.'
           })
         })
     }
   },
 
   mounted () {
-    const companyID = this.$route.params.id
+    const taskID = this.$route.params.id
 
-    this.$http.get(`companys/${companyID}/`)
+    this.$http.get(`lattes/task/${taskID}/`)
       .then((response) => {
-        this.company = response.data
+        this.task = response.data
       })
   }
 }

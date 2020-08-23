@@ -1,8 +1,8 @@
 <template>
   <b-card no-body>
     <element-table
-      :endpoint="'users'"
-      :columns="columns" />
+      :endpoint="'lattes/task'"
+      :columns="columns" /> 
   </b-card>
 </template>
 
@@ -16,15 +16,15 @@ export default {
 
   data: () => ({
     columns: {
-      'username': 'Nome de usuário',
-      'first_name': 'Nome',
-      'last_name': 'Sobrenome',
-      'email': 'Email',
-      'address': 'Endereço',
-      'actions': 'Ações',
+      'start_date': 'Data de Início',
+      'get_conclusion_date': 'Data de Conclusão',
+      'title': 'Título',
+      'about': 'Sobre',
+      'actions': 'Ações'
     }
   })
 }
+
 </script>
 
 <style>

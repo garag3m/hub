@@ -5,36 +5,27 @@
       <el-form-item label="NOME:" prop="name">
         <el-input v-model="company.name" />
       </el-form-item>
+
       <el-form-item label="CNPJ:">
         <el-input v-model="company.cnpj" />
       </el-form-item>
-      <el-form-item label="CIDADE:">
-        <el-input v-model="company.address.city" />
+
+      <el-form-item label="ENDEREÇO" prop="address">
+        <b-form-select v-model="company.address" :options="address_opts"></b-form-select>
       </el-form-item>
-      <el-form-item label="BAIRRO:">
-        <el-input v-model="company.address.neighborhood"/>
-      </el-form-item>
-      <el-form-item label="RUA:">
-        <el-input v-model="company.address.street"/>
-      </el-form-item>
-      <el-form-item label="NÚMERO:">
-        <el-input v-model="company.address.number"/>
-      </el-form-item>
-      <el-form-item label="CEP:">
-        <el-input v-model="company.address.cep"/>
-      </el-form-item>
-      <el-form-item label="ESTADO:">
-        <el-input v-model="company.address.state"/>
-      </el-form-item>
+
       <el-form-item label="PROPRIETÁRIO:">
         <el-input v-model="company.owner" />
       </el-form-item>
+
       <el-form-item label="NÚMERO DO CONVENIO:">
         <el-input type="number" :min="1" v-model="company.agreement_number" />
       </el-form-item>
+
       <el-form-item label="CPF DO PROPRIETÁRIO::">
         <el-input v-model="company.cpf_owner" />
       </el-form-item>
+
       <b-btn variant="primary" @click="submit">Salvar</b-btn>
     </el-form>
   </b-card>
@@ -56,22 +47,17 @@ export default {
         owner: null,
         agreement_number: null,
         cpf_owner: null,
-        address: {
-          city: null,
-          neighborhood: null,
-          street: null,
-          number: null,
-          cep: null,
-          state: null
-        }
-        })
+        address: null
+      })
     }
   },
 
   data: () => ({
+    address_opts: [],
   }),
 
   methods: {
+
     submit () {
       this.$refs['companyForm'].validate((valid) => {
         if (valid) {
@@ -80,7 +66,16 @@ export default {
       })
     }
   },
+  mounted () {
+    this.$http.get('address/')
+      .then((response) => {
+        this.address_opts = response.data.results.map(item => {
+          return { value: item.pk, text: item.name }
+        })
+      })
+  }
 }
+
 </script>
 
 <style scoped>

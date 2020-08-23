@@ -1,7 +1,9 @@
 <template>
   <b-card header-tag="h6" class="mb-4">
     <el-form @submit="submit" :model="user" :rules="rules" label-position="top" ref="userForm">
+      
       <h5>Dados do Usuário</h5>
+
       <el-form-item label="Username" prop="username">
         <div slot="label">Username</div>
         <el-input v-model="user.username" />
@@ -25,6 +27,11 @@
       <el-form-item label="Senha" prop="password">
         <div slot="label">Senha</div>
         <el-input type="password" v-model="user.password" />
+      </el-form-item>
+
+      <el-form-item label="Endereço" prop="city">
+        <div slot="label">Endereço</div>
+        <b-form-select v-model="user.address" :options="address_opts"></b-form-select>
       </el-form-item>
 
       <b-btn variant="primary" @click="submit">Salvar</b-btn>
@@ -51,6 +58,7 @@ export default {
         last_name: null,
         email: null,
         password: null,
+        address: null
       })
     }
   },
@@ -60,10 +68,12 @@ export default {
       username: [
         { required: true, message: 'Informe o nome', trigger: 'blur' }
       ],
-    }
-  }),
+    },
+    address_opts: [],
+}),
 
   methods: {
+
     submit () {
       this.$refs['userForm'].validate((valid) => {
         if (valid) {
@@ -72,6 +82,16 @@ export default {
       })
     }
   },
+  mounted () {
+    this.$http.get('address/')
+      .then((response) => {
+        this.address_opts = response.data.results.map(item => {
+          return { value: item.pk, text: item.name }
+        })
+      })
+  }
+
+
 }
 </script>
 

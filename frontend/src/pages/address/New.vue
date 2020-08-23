@@ -1,30 +1,33 @@
 <template>
-  <user-form :user="user" @formSumit="create" />
+  <address-form :address="address" @formSumit="create" />
 </template>
 
 <script>
-import UserForm from './Form.vue'
+import AddressForm from './Form.vue'
 export default {
   components: {
-    UserForm
+    AddressForm
   },
 
   data: () => ({
-    user: {
-      username: null,
-      first_name: null,
-      last_name: null,
-      email: null,
-      password: null,
-      address: null
+    address: {
+      city: null,
+      neighborhood: null,
+      street: null,
+      number: null,
+      cep: null,
+      state: null,
+      country: null,
+      name: null,
+      type: null
       }
   }),
 
   methods: {
     create (data) {
-      this.$http.post('users/', data)
+      this.$http.post('address/', data)
         .then((response) => {
-          this.$router.push({ name: 'users-list' })
+          this.$router.push({ name: 'address-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {

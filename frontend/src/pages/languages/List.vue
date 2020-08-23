@@ -1,8 +1,8 @@
 <template>
   <b-card no-body>
     <element-table
-      :endpoint="'users'"
-      :columns="columns" />
+      :endpoint="'lattes/languages'"
+      :columns="columns" /> 
   </b-card>
 </template>
 
@@ -16,15 +16,16 @@ export default {
 
   data: () => ({
     columns: {
-      'username': 'Nome de usuário',
-      'first_name': 'Nome',
-      'last_name': 'Sobrenome',
-      'email': 'Email',
-      'address': 'Endereço',
-      'actions': 'Ações',
+      'get_language': 'Idioma',
+      'reading_choice': 'Lê',
+      'writing_choice': 'Escreve',
+      'speech_choice': 'Fala',
+      'understanding_choice': 'Entende',
+      'actions': 'Ações'
     }
   })
 }
+
 </script>
 
 <style>

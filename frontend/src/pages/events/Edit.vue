@@ -1,23 +1,23 @@
 <template>
-  <company-form :company="company" @formSumit="update" />
+  <events-form :events="events" @formSumit="update" />
 </template>
 
 <script>
-import CompanyForm from './Form.vue'
+import EventsForm from './Form.vue'
 export default {
   components: {
-    CompanyForm
+    EventsForm
   },
 
   data: () => ({
-    company: {}
+    events: {}
   }),
 
   methods: {
     update (data) {
-      this.$http.put(`companys/${data.id}/`, data)
+      this.$http.put(`lattes/events/${data.pk}/`, data)
         .then((response) => {
-          this.$router.push({ name: 'companys-list' })
+          this.$router.push({ name: 'lattes/events-list' })
         })
         .catch((error) => {
           if (error.response.status === 401) {
@@ -25,19 +25,19 @@ export default {
             this.$router.push({ name: 'login' })
           }
           this.$notify.error({
-            title: 'Erro na atualização da empresa',
-            message: 'Não foi possível atualizar a empresa.'
+            title: 'Erro na atualização',
+            message: 'Não foi possível atualizar'
           })
         })
     }
   },
 
   mounted () {
-    const companyID = this.$route.params.id
+    const eventsID = this.$route.params.id
 
-    this.$http.get(`companys/${companyID}/`)
+    this.$http.get(`lattes/events/${eventsID}/`)
       .then((response) => {
-        this.company = response.data
+        this.events = response.data
       })
   }
 }
