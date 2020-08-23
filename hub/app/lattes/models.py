@@ -250,7 +250,7 @@ class Productions(core.CreateUpdateModel):
         return self.TYPE_CHOICES[self.type][1]
 
     def __str__(self):
-        return f'{self.header}'
+        return f'{self.header} = {self.type_choice}: {self.reference}'
 
     class Meta:
         verbose_name = 'Produção'
