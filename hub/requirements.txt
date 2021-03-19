@@ -3,7 +3,7 @@ django-appconf==1.0.3
 django-cors-headers==3.0.2
 django-filter==2.1.0
 django-imagekit==4.0.2
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 huey==2.1.0
 pilkit==2.0
 pytz==2019.1
